@@ -1,5 +1,14 @@
 #include "TestGameManager.h"
 #include "../PennyEngine/PennyEngine.h"
+#include <iostream>
+
+TestGameManager::TestGameManager() : _testObject("MEMBERVARTEST") {
+    PennyEngine::addInputListener(this);
+
+    for (int i = 0; i < 5; i++) {
+        _testObjects.push_back(std::shared_ptr<TestClass>(new TestClass("test" + std::to_string(i))));
+    }
+}
 
 void TestGameManager::update() {
     constexpr float speed = 1.f;
@@ -41,4 +50,24 @@ void TestGameManager::drawUI(sf::RenderTexture& surface) {
     border.setSize({ (float)surface.getSize().x, (float)surface.getSize().y});
 
     surface.draw(border);
+}
+
+void TestGameManager::keyPressed(sf::Keyboard::Key& key) {
+}
+
+void TestGameManager::keyReleased(sf::Keyboard::Key& key) {
+    std::cout << _test << std::endl;
+}
+
+void TestGameManager::mouseButtonPressed(const int mx, const int my, const int button) {
+}
+
+void TestGameManager::mouseButtonReleased(const int mx, const int my, const int button) {
+    std::cout << button << std::endl;
+}
+
+void TestGameManager::mouseMoved(const int mx, const int my) {
+}
+
+void TestGameManager::mouseWheelScrolled(sf::Event::MouseWheelScrollEvent mouseWheelScroll) {
 }

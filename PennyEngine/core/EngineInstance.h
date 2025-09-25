@@ -3,9 +3,20 @@
 
 #include "GameManager.h"
 #include "Resolution.h"
+#include "../input/InputEventDistributor.h"
 
 namespace pe {
     namespace intern {
+        struct GfxResources {
+            GfxResources(sf::RenderTexture& mainSurface, sf::Sprite& mainSurfaceSprite, sf::RenderTexture& uiSurface, sf::Sprite& uiSurfaceSprite) :
+                mainSurface(mainSurface), mainSurfaceSprite(mainSurfaceSprite), uiSurface(uiSurface), uiSurfaceSprite(uiSurfaceSprite)
+            {}
+
+            sf::RenderTexture& mainSurface;
+            sf::Sprite& mainSurfaceSprite;
+            sf::RenderTexture& uiSurface;
+            sf::Sprite& uiSurfaceSprite;
+        };
 
         class EngineInstance {
         public:
@@ -19,16 +30,25 @@ namespace pe {
             bool autoScaleRenderRes = true;
             bool useDisplayResForUI = false;
 
+            std::string appIconPath = "NONE";
+            std::string cursorImagePath = "NONE";
+
             bool fullscreen = false;
             std::string windowTitle = "";
 
             sf::View camera;
 
             bool isStarted() const;
+
+            InputEventDistributor& getInputManager();
         private:
-            void createWindow();
+            void createWindow(GfxResources& gfxResources);
+            void mainLoop(GfxResources& gfxResources);
+            void handleEvent(sf::Event& event);
 
             bool _started = false;
+
+            InputEventDistributor _inputManager;
         };
     }
 }

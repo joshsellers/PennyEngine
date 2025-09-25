@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="PennyEngine\input\InputEventDistributor.cpp" />
     <ClCompile Include="testing\main.cpp" />
     <ClCompile Include="PennyEngine\core\EngineInstance.cpp" />
     <ClCompile Include="PennyEngine\core\GameManager.cpp" />
@@ -141,7 +142,12 @@
     <ClInclude Include="PennyEngine\core\EngineInstance.h" />
     <ClInclude Include="PennyEngine\core\GameManager.h" />
     <ClInclude Include="PennyEngine\core\Resolution.h" />
+    <ClInclude Include="PennyEngine\input\InputEventDistributor.h" />
+    <ClInclude Include="PennyEngine\input\InputListener.h" />
+    <ClInclude Include="PennyEngine\input\KeyListener.h" />
+    <ClInclude Include="PennyEngine\input\MouseListener.h" />
     <ClInclude Include="PennyEngine\PennyEngine.h" />
+    <ClInclude Include="testing\TestClass.h" />
     <ClInclude Include="testing\TestGameManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

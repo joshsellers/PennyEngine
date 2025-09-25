@@ -63,3 +63,15 @@ void PennyEngine::setWindowTitle(std::string title) {
 std::string PennyEngine::getWindowTitle() {
     return _instance.windowTitle;
 }
+
+void PennyEngine::setAppIcon(std::string path) {
+    _instance.appIconPath = path;
+}
+
+void PennyEngine::setMouseCursor(std::string path) {
+    _instance.cursorImagePath = path;
+}
+
+void PennyEngine::addInputListener(pe::intern::InputListener* listener) {
+    _instance.getInputManager().addListener(listener);
+}

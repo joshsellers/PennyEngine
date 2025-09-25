@@ -2,17 +2,20 @@
 
 #include "../PennyEngine/PennyEngine.h"
 #include "TestGameManager.h"
+#include <iostream>
 
 // for testing
 
 int main() {
     TestGameManager testManager;
 
-    PennyEngine::setFullscreen(true);
+    TestClass testObject("MAINTEST"); 
+
+    PennyEngine::setFullscreen(false);
     PennyEngine::useDisplayResForUI(true);
     PennyEngine::setRenderResolution({900, 900});
     PennyEngine::setDisplayResolution({ (int)sf::VideoMode::getDesktopMode().width, (int)sf::VideoMode::getDesktopMode().height });
-    PennyEngine::setDisplayResolution({ 1920, 1080 });
+    PennyEngine::setDisplayResolution({ 900, 900 });
 
     PennyEngine::setFramerateLimit(60);
 

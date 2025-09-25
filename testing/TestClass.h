@@ -1,0 +1,24 @@
+#pragma once
+
+#include "../PennyEngine/input/KeyListener.h"
+#include "../PennyEngine/input/MouseListener.h"
+#include "../PennyEngine/PennyEngine.h"
+#include <iostream>
+
+class TestClass : public pe::KeyListener, public pe::MouseListener {
+public:
+    TestClass(std::string str) {
+        PennyEngine::addInputListener(this);
+        _test = str;
+    }
+protected:
+    virtual void keyPressed(sf::Keyboard::Key& key) {};
+    virtual void keyReleased(sf::Keyboard::Key& key) { std::cout << _test << std::endl; };
+
+    virtual void mouseButtonPressed(const int mx, const int my, const int button) {};
+    virtual void mouseButtonReleased(const int mx, const int my, const int button) {};
+    virtual void mouseMoved(const int mx, const int my) {};
+    virtual void mouseWheelScrolled(sf::Event::MouseWheelScrollEvent mouseWheelScroll) {};
+private:
+    std::string _test;
+};

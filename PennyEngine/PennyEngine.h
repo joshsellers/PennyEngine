@@ -7,6 +7,7 @@
 #define _PENNY_ENGINE_H
 
 #include "core/EngineInstance.h"
+#include <functional>
 
 class PennyEngine {
 public:
@@ -34,6 +35,11 @@ public:
 
     static void setWindowTitle(std::string title);
     static std::string getWindowTitle();
+
+    static void setAppIcon(std::string path);
+    static void setMouseCursor(std::string path);
+
+    static void addInputListener(pe::intern::InputListener* listener);
 
 private:
     static inline pe::intern::EngineInstance _instance;
