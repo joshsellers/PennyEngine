@@ -27,6 +27,18 @@ namespace pe {
             _instance.getSurface()->draw(graphic);
         }
 
+        // void addMenu();
+        // void getMenu(std::string identifier); // elements/components could have identifiers too & menu can have a getElement(std::string identifier)
+                                                 // could use maps instead of vectors for this
+                                                 // so we don't have to store shared_ptrs to elements or menus as member vars anywhere
+                                                 // call elements either MenuElement or MenuComponent
+                                                 // menu->addSubMenu(menu) / UI::getMenu(id)->addSubMenu(menu)
+                                                 // Menu::close(openSuperMenu = true) - by default opens the next menu higher in the chain
+                                                 // Menu::open(closeSupermenus = true) - by default closes all menus higher in the chain
+                                                 // Don't forget pendingActivation thing, check PL UIMenu.cpp
+                                                 // should still be able to close supermenus IN Menu::open
+                                                 // Also look at what's going on in PL UIMenu::show/hide
+
         friend class pe::intern::EngineInstance;
     private:
         static inline intern::UIManager _instance;
