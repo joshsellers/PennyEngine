@@ -58,6 +58,9 @@ void TestGameManager::keyPressed(sf::Keyboard::Key& key) {
 
 void TestGameManager::keyReleased(sf::Keyboard::Key& key) {
     std::cout << _test << std::endl;
+
+    if (key == sf::Keyboard::Key::Hyphen) PennyEngine::getCamera().zoom(2.f);
+    else if (key == sf::Keyboard::Key::Equal) PennyEngine::getCamera().zoom(0.5f);
 }
 
 void TestGameManager::mouseButtonPressed(const int mx, const int my, const int button) {
