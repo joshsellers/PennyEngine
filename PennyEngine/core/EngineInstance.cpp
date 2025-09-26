@@ -2,9 +2,11 @@
 #include <iostream>
 #include "Logger.h"
 #include "../input/Gamepad/Gamepad.h"
+#include "../audio/SoundManager.h"
 
 void pe::intern::EngineInstance::start(GameManager* gameManager) {
     Logger::start();
+    SoundManager::loadSounds();
 
     this->gameManager = gameManager;
 
@@ -189,6 +191,7 @@ void pe::intern::EngineInstance::shutdown() {
 
     gameManager->onShutdown();
 
+    SoundManager::shutdown();
     //SteamAPI_Shutdown();
     Logger::log("SHUTDOWN");
     while (!Logger::queuesHaveFlushed()) {

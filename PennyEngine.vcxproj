@@ -118,7 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\joshs\LocalDocuments\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\joshs\LocalDocuments\SFML-2.5.1\include;C:\Users\joshs\LocalDocuments\soloud20200207\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -134,6 +134,73 @@
     <ClCompile Include="PennyEngine\core\Util.cpp" />
     <ClCompile Include="PennyEngine\input\Gamepad\Gamepad.cpp" />
     <ClCompile Include="PennyEngine\input\InputEventDistributor.cpp" />
+    <ClCompile Include="soloud\audiosource\monotone\soloud_monotone.cpp" />
+    <ClCompile Include="soloud\audiosource\noise\soloud_noise.cpp" />
+    <ClCompile Include="soloud\audiosource\openmpt\soloud_openmpt.cpp" />
+    <ClCompile Include="soloud\audiosource\openmpt\soloud_openmpt_dll.c" />
+    <ClCompile Include="soloud\audiosource\sfxr\soloud_sfxr.cpp" />
+    <ClCompile Include="soloud\audiosource\speech\darray.cpp" />
+    <ClCompile Include="soloud\audiosource\speech\klatt.cpp" />
+    <ClCompile Include="soloud\audiosource\speech\resonator.cpp" />
+    <ClCompile Include="soloud\audiosource\speech\soloud_speech.cpp" />
+    <ClCompile Include="soloud\audiosource\speech\tts.cpp" />
+    <ClCompile Include="soloud\audiosource\vic\soloud_vic.cpp" />
+    <ClCompile Include="soloud\audiosource\vizsn\soloud_vizsn.cpp" />
+    <ClCompile Include="soloud\audiosource\wav\dr_impl.cpp" />
+    <ClCompile Include="soloud\audiosource\wav\soloud_wav.cpp" />
+    <ClCompile Include="soloud\audiosource\wav\soloud_wavstream.cpp" />
+    <ClCompile Include="soloud\audiosource\wav\stb_vorbis.c" />
+    <ClCompile Include="soloud\backend\alsa\soloud_alsa.cpp" />
+    <ClCompile Include="soloud\backend\coreaudio\soloud_coreaudio.cpp" />
+    <ClCompile Include="soloud\backend\jack\soloud_jack.cpp" />
+    <ClCompile Include="soloud\backend\miniaudio\soloud_miniaudio.cpp" />
+    <ClCompile Include="soloud\backend\nosound\soloud_nosound.cpp" />
+    <ClCompile Include="soloud\backend\null\soloud_null.cpp" />
+    <ClCompile Include="soloud\backend\openal\soloud_openal.cpp" />
+    <ClCompile Include="soloud\backend\openal\soloud_openal_dll.c" />
+    <ClCompile Include="soloud\backend\opensles\soloud_opensles.cpp" />
+    <ClCompile Include="soloud\backend\oss\soloud_oss.cpp" />
+    <ClCompile Include="soloud\backend\portaudio\soloud_portaudio.cpp" />
+    <ClCompile Include="soloud\backend\portaudio\soloud_portaudio_dll.c" />
+    <ClCompile Include="soloud\backend\sdl2_static\soloud_sdl2_static.cpp" />
+    <ClCompile Include="soloud\backend\sdl\soloud_sdl1.cpp" />
+    <ClCompile Include="soloud\backend\sdl\soloud_sdl1_dll.c" />
+    <ClCompile Include="soloud\backend\sdl\soloud_sdl2.cpp" />
+    <ClCompile Include="soloud\backend\sdl\soloud_sdl2_dll.c" />
+    <ClCompile Include="soloud\backend\sdl_static\soloud_sdl_static.cpp" />
+    <ClCompile Include="soloud\backend\vita_homebrew\soloud_vita_homebrew.cpp" />
+    <ClCompile Include="soloud\backend\wasapi\soloud_wasapi.cpp" />
+    <ClCompile Include="soloud\backend\winmm\soloud_winmm.cpp" />
+    <ClCompile Include="soloud\backend\xaudio2\soloud_xaudio2.cpp" />
+    <ClCompile Include="soloud\core\soloud.cpp" />
+    <ClCompile Include="soloud\core\soloud_audiosource.cpp" />
+    <ClCompile Include="soloud\core\soloud_bus.cpp" />
+    <ClCompile Include="soloud\core\soloud_core_3d.cpp" />
+    <ClCompile Include="soloud\core\soloud_core_basicops.cpp" />
+    <ClCompile Include="soloud\core\soloud_core_faderops.cpp" />
+    <ClCompile Include="soloud\core\soloud_core_filterops.cpp" />
+    <ClCompile Include="soloud\core\soloud_core_getters.cpp" />
+    <ClCompile Include="soloud\core\soloud_core_setters.cpp" />
+    <ClCompile Include="soloud\core\soloud_core_voicegroup.cpp" />
+    <ClCompile Include="soloud\core\soloud_core_voiceops.cpp" />
+    <ClCompile Include="soloud\core\soloud_fader.cpp" />
+    <ClCompile Include="soloud\core\soloud_fft.cpp" />
+    <ClCompile Include="soloud\core\soloud_fft_lut.cpp" />
+    <ClCompile Include="soloud\core\soloud_file.cpp" />
+    <ClCompile Include="soloud\core\soloud_filter.cpp" />
+    <ClCompile Include="soloud\core\soloud_misc.cpp" />
+    <ClCompile Include="soloud\core\soloud_queue.cpp" />
+    <ClCompile Include="soloud\core\soloud_thread.cpp" />
+    <ClCompile Include="soloud\filter\soloud_bassboostfilter.cpp" />
+    <ClCompile Include="soloud\filter\soloud_biquadresonantfilter.cpp" />
+    <ClCompile Include="soloud\filter\soloud_dcremovalfilter.cpp" />
+    <ClCompile Include="soloud\filter\soloud_echofilter.cpp" />
+    <ClCompile Include="soloud\filter\soloud_fftfilter.cpp" />
+    <ClCompile Include="soloud\filter\soloud_flangerfilter.cpp" />
+    <ClCompile Include="soloud\filter\soloud_freeverbfilter.cpp" />
+    <ClCompile Include="soloud\filter\soloud_lofifilter.cpp" />
+    <ClCompile Include="soloud\filter\soloud_robotizefilter.cpp" />
+    <ClCompile Include="soloud\filter\soloud_waveshaperfilter.cpp" />
     <ClCompile Include="testing\main.cpp" />
     <ClCompile Include="PennyEngine\core\EngineInstance.cpp" />
     <ClCompile Include="PennyEngine\core\GameManager.cpp" />
@@ -141,6 +208,7 @@
     <ClCompile Include="testing\TestGameManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PennyEngine\audio\SoundManager.h" />
     <ClInclude Include="PennyEngine\core\EngineInstance.h" />
     <ClInclude Include="PennyEngine\core\GameManager.h" />
     <ClInclude Include="PennyEngine\core\Logger.h" />
@@ -154,8 +222,20 @@
     <ClInclude Include="PennyEngine\input\KeyListener.h" />
     <ClInclude Include="PennyEngine\input\MouseListener.h" />
     <ClInclude Include="PennyEngine\PennyEngine.h" />
+    <ClInclude Include="soloud\audiosource\speech\darray.h" />
+    <ClInclude Include="soloud\audiosource\speech\klatt.h" />
+    <ClInclude Include="soloud\audiosource\speech\resonator.h" />
+    <ClInclude Include="soloud\audiosource\speech\tts.h" />
+    <ClInclude Include="soloud\audiosource\wav\dr_flac.h" />
+    <ClInclude Include="soloud\audiosource\wav\dr_mp3.h" />
+    <ClInclude Include="soloud\audiosource\wav\dr_wav.h" />
+    <ClInclude Include="soloud\audiosource\wav\stb_vorbis.h" />
+    <ClInclude Include="soloud\backend\miniaudio\miniaudio.h" />
     <ClInclude Include="testing\TestClass.h" />
     <ClInclude Include="testing\TestGameManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="soloud\audiosource\speech\Elements.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

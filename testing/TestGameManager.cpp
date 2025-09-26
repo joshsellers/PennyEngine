@@ -1,6 +1,7 @@
 #include "TestGameManager.h"
 #include "../PennyEngine/PennyEngine.h"
 #include <iostream>
+#include "../PennyEngine/audio/SoundManager.h"
 
 TestGameManager::TestGameManager() : _testObject("MEMBERVARTEST") {
     PennyEngine::addInputListener(this);
