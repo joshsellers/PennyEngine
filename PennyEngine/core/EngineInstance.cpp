@@ -3,6 +3,7 @@
 #include "Logger.h"
 #include "../input/Gamepad/Gamepad.h"
 #include "../audio/SoundManager.h"
+#include "../ui/UI.h"
 
 void pe::intern::EngineInstance::start(GameManager* gameManager) {
     Logger::start();
@@ -17,6 +18,8 @@ void pe::intern::EngineInstance::start(GameManager* gameManager) {
     GfxResources resources(mainSurface, mainSurfaceSprite, uiSurface, uiSurfaceSprite);
 
     createWindow(resources);
+
+    UI::_instance.setSurface(&uiSurface);
 
     connectGamepad();
 
@@ -166,6 +169,7 @@ void pe::intern::EngineInstance::mainLoop(GfxResources& gfxResources) {
             handleEvent(event);
         }
 
+        UI::_instance.update();
         gameManager->update();
 
         mainSurface.setView(camera);
@@ -177,6 +181,8 @@ void pe::intern::EngineInstance::mainLoop(GfxResources& gfxResources) {
 
         uiSurface.clear(sf::Color::Transparent);
         gameManager->renderUI(uiSurface);
+        UI::_instance.draw();
+        gameManager->drawUI(uiSurface);
         uiSurface.display();
 
         window.clear();

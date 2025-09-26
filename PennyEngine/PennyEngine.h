@@ -28,6 +28,7 @@ public:
     static bool shouldAutoScaleRenderResultion();
 
     static void useDisplayResForUI(bool should);
+    static bool useDisplayResForUI();
 
     static void setDisplayResolution(pe::Resolution res);
     static pe::Resolution getDisplayResolution();

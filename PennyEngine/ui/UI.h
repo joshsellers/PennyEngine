@@ -1,0 +1,36 @@
+#ifndef _UI_H
+#define _UI_H
+
+#include "UIManager.h"
+#include <SFML/System/Vector2.hpp>
+#include "../core/EngineInstance.h"
+
+#include "../PennyEngine.h"
+
+namespace pe {
+    class UI {
+    public:
+        static sf::Vector2f percentToScreenPos(sf::Vector2f pos);
+        static sf::Vector2f percentToScreenPos(float x, float y);
+        static sf::Vector2f percentToScreenDimensions(sf::Vector2f dimensions);
+        static sf::Vector2f percentToScreenDimensions(float x, float y);
+        static float percentToScreenWidth(float width);
+        static float percentToScreenHeight(float height);
+
+        template <typename T>
+        static void draw(T& graphic) {
+            if (!PennyEngine::isStarted()) return;
+            static_assert(std::is_base_of<sf::Drawable, T>::value, "pe::UI::draw parameter must be a subclass of sf::Drawable");
+            static_assert(std::is_base_of<sf::Transformable, T>::value, "pe::UI::draw parameter must be a subclass of sf::Transformable");
+
+            graphic.setPosition(percentToScreenPos(graphic.getPosition()));
+            _instance.getSurface()->draw(graphic);
+        }
+
+        friend class pe::intern::EngineInstance;
+    private:
+        static inline intern::UIManager _instance;
+    };
+}
+
+#endif

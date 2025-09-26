@@ -44,6 +44,10 @@ void PennyEngine::useDisplayResForUI(bool should) {
     _instance.useDisplayResForUI = should;
 }
 
+bool PennyEngine::useDisplayResForUI() {
+    return _instance.useDisplayResForUI;
+}
+
 void PennyEngine::setDisplayResolution(pe::Resolution res) {
     _instance.displayRes = res;
 }

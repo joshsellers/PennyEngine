@@ -2,6 +2,7 @@
 #include "../PennyEngine/PennyEngine.h"
 #include <iostream>
 #include "../PennyEngine/audio/SoundManager.h"
+#include "../PennyEngine/ui/UI.h"
 
 TestGameManager::TestGameManager() : _testObject("MEMBERVARTEST") {
     PennyEngine::addInputListener(this);
@@ -51,6 +52,14 @@ void TestGameManager::drawUI(sf::RenderTexture& surface) {
     border.setSize({ (float)surface.getSize().x, (float)surface.getSize().y});
 
     surface.draw(border);
+
+    sf::CircleShape circle;
+    circle.setFillColor(sf::Color::Blue);
+    circle.setRadius(pe::UI::percentToScreenWidth(10));
+    circle.setOrigin(circle.getRadius(), circle.getRadius());
+    circle.setPosition(100, 50);
+
+    pe::UI::draw(circle);
 }
 
 void TestGameManager::keyPressed(sf::Keyboard::Key& key) {

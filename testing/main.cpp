@@ -18,7 +18,7 @@ int main() {
     PennyEngine::useDisplayResForUI(true);
     PennyEngine::setRenderResolution({900, 900});
     //PennyEngine::setDisplayResolution({ (int)sf::VideoMode::getDesktopMode().width, (int)sf::VideoMode::getDesktopMode().height });
-    PennyEngine::setDisplayResolution({ 900, 900 });
+    PennyEngine::setDisplayResolution({ 1080, 1080 });
 
     PennyEngine::setFramerateLimit(60);
 
