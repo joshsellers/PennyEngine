@@ -71,3 +71,6 @@ void TestGameManager::mouseMoved(const int mx, const int my) {
 
 void TestGameManager::mouseWheelScrolled(sf::Event::MouseWheelScrollEvent mouseWheelScroll) {
 }
+
+void TestGameManager::onShutdown() {
+}

@@ -21,7 +21,7 @@ namespace pe {
         class EngineInstance {
         public:
             void start(GameManager* gameManager);
-            GameManager* gameManager;
+            GameManager* gameManager = nullptr;
 
             sf::RenderWindow window;
             int framerateLimit = 0;
@@ -44,7 +44,11 @@ namespace pe {
         private:
             void createWindow(GfxResources& gfxResources);
             void mainLoop(GfxResources& gfxResources);
+            void shutdown();
+
             void handleEvent(sf::Event& event);
+
+            void connectGamepad();
 
             bool _started = false;
 

@@ -7,9 +7,9 @@ namespace pe {
         public:
             friend class InputEventDistributor;
         protected:
-            bool _isKeyListener;
-            bool _isMouseListener;
-            bool _isGamepadListener;
+            bool _isKeyListener = false;
+            bool _isMouseListener = false;
+            bool _isGamepadListener = false;
 
             virtual void listenToAll() {
                 _isKeyListener = true;

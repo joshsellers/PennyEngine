@@ -8,6 +8,10 @@ bool PennyEngine::isStarted() {
     return _instance.isStarted();
 }
 
+void PennyEngine::stop() {
+    _instance.window.close();
+}
+
 void PennyEngine::setFramerateLimit(int framerate) {
     _instance.framerateLimit = framerate;
 }
@@ -74,4 +78,16 @@ void PennyEngine::setMouseCursor(std::string path) {
 
 void PennyEngine::addInputListener(pe::intern::InputListener* listener) {
     _instance.getInputManager().addListener(listener);
+}
+
+void PennyEngine::setAppName(std::string name) {
+    _appName = name;
+}
+
+std::string PennyEngine::getAppName() {
+    return _appName;
+}
+
+bool PennyEngine::playerIsUsingMouse() {
+    return _usingMouse;
 }

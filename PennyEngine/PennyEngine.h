@@ -7,12 +7,14 @@
 #define _PENNY_ENGINE_H
 
 #include "core/EngineInstance.h"
-#include <functional>
+
 
 class PennyEngine {
 public:
     static void start(pe::GameManager* gameManager);
     static bool isStarted();
+
+    static void stop();
 
     static void setFramerateLimit(int framerate);
 
@@ -41,7 +43,17 @@ public:
 
     static void addInputListener(pe::intern::InputListener* listener);
 
+    static void setAppName(std::string name);
+    static std::string getAppName();
+
+    static bool playerIsUsingMouse();
+
+    friend class pe::intern::InputEventDistributor;
 private:
     static inline pe::intern::EngineInstance _instance;
+
+    static inline std::string _appName = "PennyEngine";
+
+    static inline bool _usingMouse = true;
 };
 #endif

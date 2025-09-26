@@ -1,7 +1,11 @@
 #include "EngineInstance.h"
 #include <iostream>
+#include "Logger.h"
+#include "../input/Gamepad/Gamepad.h"
 
 void pe::intern::EngineInstance::start(GameManager* gameManager) {
+    Logger::start();
+
     this->gameManager = gameManager;
 
     sf::RenderTexture mainSurface;
@@ -11,6 +15,8 @@ void pe::intern::EngineInstance::start(GameManager* gameManager) {
     GfxResources resources(mainSurface, mainSurfaceSprite, uiSurface, uiSurfaceSprite);
 
     createWindow(resources);
+
+    connectGamepad();
 
     sf::Image icon;
     if (appIconPath != "NONE" && icon.loadFromFile(appIconPath)) {
@@ -26,7 +32,7 @@ void pe::intern::EngineInstance::start(GameManager* gameManager) {
 
     mainLoop(resources);
 
-    //shutdown();
+    shutdown();
 }
 
 void pe::intern::EngineInstance::createWindow(GfxResources& gfxResources) {
@@ -178,6 +184,19 @@ void pe::intern::EngineInstance::mainLoop(GfxResources& gfxResources) {
     }
 }
 
+void pe::intern::EngineInstance::shutdown() {
+    _started = false;
+
+    gameManager->onShutdown();
+
+    //SteamAPI_Shutdown();
+    Logger::log("SHUTDOWN");
+    while (!Logger::queuesHaveFlushed()) {
+        sf::sleep(sf::milliseconds(500));
+    }
+    Logger::stop();
+}
+
 void pe::intern::EngineInstance::handleEvent(sf::Event& event) {
     _inputManager.handleEvent(event);
 
@@ -186,6 +205,21 @@ void pe::intern::EngineInstance::handleEvent(sf::Event& event) {
             window.close();
             break;
     }
+}
+
+void pe::intern::EngineInstance::connectGamepad() {
+    bool controllerConnected = false;
+    int controllerId = -1;
+    for (int i = 0; i < 7; i++) {
+        if (sf::Joystick::isConnected(i)) {
+            controllerConnected = true;
+            controllerId = i;
+            break;
+        }
+    }
+    if (controllerId != -1) Gamepad::setControllerId(controllerId);
+    Logger::log("Controller is " + (std::string)(controllerConnected ? "" : "not ") + "connected");
+    Logger::log("Controller id: " + std::to_string(controllerId));
 }
 
 bool pe::intern::EngineInstance::isStarted() const {

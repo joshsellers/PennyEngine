@@ -22,6 +22,8 @@ protected:
     virtual void mouseButtonReleased(const int mx, const int my, const int button);
     virtual void mouseMoved(const int mx, const int my);
     virtual void mouseWheelScrolled(sf::Event::MouseWheelScrollEvent mouseWheelScroll);
+
+    virtual void onShutdown();
 private:
     std::string _test = "MANAGERTEST";
     TestClass _testObject;

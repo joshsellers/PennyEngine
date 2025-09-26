@@ -1,4 +1,6 @@
 #include "InputEventDistributor.h"
+#include "Gamepad/Gamepad.h"
+#include "../PennyEngine.h"
 
 void pe::intern::InputEventDistributor::handleEvent(sf::Event& event) {
     switch (event.type) {
@@ -28,6 +30,8 @@ void pe::intern::InputEventDistributor::handleEvent(sf::Event& event) {
 
         case sf::Event::MouseMoved:
         {
+            PennyEngine::getWindow().setMouseCursorVisible(true);
+            PennyEngine::_usingMouse = true;
             for (const auto& listener : _mouseListeners) listener->mouseMoved(event.mouseMove.x, event.mouseMove.y);
             break;
         }
@@ -37,6 +41,28 @@ void pe::intern::InputEventDistributor::handleEvent(sf::Event& event) {
             for (const auto& listener : _mouseListeners) listener->mouseWheelScrolled(event.mouseWheelScroll);
             break;
         }
+
+        case sf::Event::JoystickConnected:
+            Gamepad::receiveControllerEvent(event);
+            break;
+        case sf::Event::JoystickDisconnected:
+            Gamepad::receiveControllerEvent(event);
+            break;
+        case sf::Event::JoystickMoved:
+            PennyEngine::getWindow().setMouseCursorVisible(false);
+            PennyEngine::_usingMouse = false;
+            Gamepad::receiveControllerEvent(event);
+            break;
+        case sf::Event::JoystickButtonReleased:
+            PennyEngine::getWindow().setMouseCursorVisible(false);
+            PennyEngine::_usingMouse = false;
+            Gamepad::receiveControllerEvent(event);
+            break;
+        case sf::Event::JoystickButtonPressed:
+            PennyEngine::getWindow().setMouseCursorVisible(false);
+            PennyEngine::_usingMouse = false;
+            Gamepad::receiveControllerEvent(event);
+            break;
     }
 }
 
@@ -47,5 +73,9 @@ void pe::intern::InputEventDistributor::addListener(InputListener* listener) {
 
     if (listener->_isMouseListener) {
         _mouseListeners.push_back(dynamic_cast<MouseListener*>(listener));
+    }
+
+    if (listener->_isGamepadListener) {
+        pe::Gamepad::addListener(dynamic_cast<GamepadListener*>(listener));
     }
 }

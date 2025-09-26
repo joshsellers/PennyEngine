@@ -33,6 +33,12 @@
     <ClCompile Include="PennyEngine\input\InputEventDistributor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PennyEngine\input\Gamepad\Gamepad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PennyEngine\core\Util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PennyEngine\PennyEngine.h">
@@ -63,6 +69,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="testing\TestClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PennyEngine\input\Gamepad\Gamepad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PennyEngine\input\Gamepad\GamepadButtons.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PennyEngine\core\Util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PennyEngine\core\Logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PennyEngine\input\Gamepad\GamepadListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

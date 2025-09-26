@@ -9,7 +9,9 @@ namespace pe {
         virtual void draw(sf::RenderTexture& surface) = 0;
         virtual void drawUI(sf::RenderTexture& surface) = 0;
 
-        void renderUI(sf::RenderTexture& surface);
+        virtual void renderUI(sf::RenderTexture& surface);
+
+        virtual void onShutdown() = 0;
     protected:
 
     private:

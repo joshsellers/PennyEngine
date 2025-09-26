@@ -127,10 +127,12 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\joshs\LocalDocuments\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics.lib;sfml-system.lib;sfml-window.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics.lib;sfml-system.lib;sfml-window.lib;Xinput9_1_0.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="PennyEngine\core\Util.cpp" />
+    <ClCompile Include="PennyEngine\input\Gamepad\Gamepad.cpp" />
     <ClCompile Include="PennyEngine\input\InputEventDistributor.cpp" />
     <ClCompile Include="testing\main.cpp" />
     <ClCompile Include="PennyEngine\core\EngineInstance.cpp" />
@@ -141,7 +143,12 @@
   <ItemGroup>
     <ClInclude Include="PennyEngine\core\EngineInstance.h" />
     <ClInclude Include="PennyEngine\core\GameManager.h" />
+    <ClInclude Include="PennyEngine\core\Logger.h" />
     <ClInclude Include="PennyEngine\core\Resolution.h" />
+    <ClInclude Include="PennyEngine\core\Util.h" />
+    <ClInclude Include="PennyEngine\input\Gamepad\Gamepad.h" />
+    <ClInclude Include="PennyEngine\input\Gamepad\GamepadButtons.h" />
+    <ClInclude Include="PennyEngine\input\Gamepad\GamepadListener.h" />
     <ClInclude Include="PennyEngine\input\InputEventDistributor.h" />
     <ClInclude Include="PennyEngine\input\InputListener.h" />
     <ClInclude Include="PennyEngine\input\KeyListener.h" />
