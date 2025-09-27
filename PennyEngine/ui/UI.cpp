@@ -27,3 +27,13 @@ float pe::UI::percentToScreenHeight(float height) {
     const Resolution res = PennyEngine::useDisplayResForUI() ? PennyEngine::getDisplayResolution() : PennyEngine::getRenderResolution();
     return (float)res.height * (height / 100.f);
 }
+
+void pe::UI::addMenu(s_p<Menu> menu) {
+    _instance.getMenus().push_back(menu);
+}
+
+s_p<pe::Menu> pe::UI::getMenu(std::string id) {
+    for (const auto& menu : _instance.getMenus()) {
+        if (menu->getIdentifier() == id) return menu;
+    }
+}

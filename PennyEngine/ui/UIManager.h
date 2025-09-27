@@ -5,6 +5,8 @@
 #include "../input/Gamepad/GamepadListener.h"
 #include "../input/KeyListener.h"
 #include "../input/MouseListener.h"
+#include "Menu.h"
+#include "../core/Defines.h"
 
 namespace pe {
     namespace intern {
@@ -17,6 +19,8 @@ namespace pe {
 
             void setSurface(sf::RenderTexture* surface);
             sf::RenderTexture* getSurface();
+
+            std::vector<s_p<Menu>>& getMenus();
         protected:
             virtual void keyPressed(sf::Keyboard::Key& key);
             virtual void keyReleased(sf::Keyboard::Key& key);
@@ -33,6 +37,8 @@ namespace pe {
             virtual void gamepadConnected();
         private:
             sf::RenderTexture* _surface = nullptr;
+
+            std::vector<s_p<Menu>> _menus;
         };
     }
 }

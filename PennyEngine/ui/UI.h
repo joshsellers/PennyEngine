@@ -6,6 +6,7 @@
 #include "../core/EngineInstance.h"
 
 #include "../PennyEngine.h"
+#include "../core/Defines.h"
 
 namespace pe {
     class UI {
@@ -18,26 +19,17 @@ namespace pe {
         static float percentToScreenHeight(float height);
 
         template <typename T>
-        static void draw(T& graphic) {
+        static void draw(T& graphic, bool convertPos = true) {
             if (!PennyEngine::isStarted()) return;
             static_assert(std::is_base_of<sf::Drawable, T>::value, "pe::UI::draw parameter must be a subclass of sf::Drawable");
             static_assert(std::is_base_of<sf::Transformable, T>::value, "pe::UI::draw parameter must be a subclass of sf::Transformable");
 
-            graphic.setPosition(percentToScreenPos(graphic.getPosition()));
+            if (convertPos) graphic.setPosition(percentToScreenPos(graphic.getPosition()));
             _instance.getSurface()->draw(graphic);
         }
 
-        // void addMenu();
-        // void getMenu(std::string identifier); // elements/components could have identifiers too & menu can have a getElement(std::string identifier)
-                                                 // could use maps instead of vectors for this
-                                                 // so we don't have to store shared_ptrs to elements or menus as member vars anywhere
-                                                 // call elements either MenuElement or MenuComponent
-                                                 // menu->addSubMenu(menu) / UI::getMenu(id)->addSubMenu(menu)  // actually call them parent and child menus
-                                                 // Menu::close(openSuperMenu = true) - by default opens the next menu higher in the chain
-                                                 // Menu::open(closeSupermenus = true) - by default closes all menus higher in the chain
-                                                 // Don't forget pendingActivation thing, check PL UIMenu.cpp
-                                                 // should still be able to close supermenus IN Menu::open
-                                                 // Also look at what's going on in PL UIMenu::show/hide
+        static void addMenu(s_p<Menu> menu);
+        static s_p<Menu> getMenu(std::string id); 
 
         friend class pe::intern::EngineInstance;
     private:

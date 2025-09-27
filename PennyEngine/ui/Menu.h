@@ -39,22 +39,13 @@ namespace pe {
 
         std::string getIdentifier() const;
 
-        void controllerButtonReleased(GAMEPAD_BUTTON button);
-        void controllerButtonPressed(GAMEPAD_BUTTON button);
-
-        void keyPressed(sf::Keyboard::Key& key);
-        void keyReleased(sf::Keyboard::Key& key);
-        void mouseButtonPressed(const int mx, const int my, const int button);
-        void mouseButtonReleased(const int mx, const int my, const int button);
-        void mouseMoved(const int mx, const int my);
-        void mouseWheelScrolled(sf::Event::MouseWheelScrollEvent mouseWheelScroll);
-
-        void textEntered(sf::Uint32 character);
-
+        friend class UIManager;
     private:
         const std::string _id;
 
         bool _isActive = false;
+
+        bool _useGamepadConfig = false;
 
         bool _hasParent = false;
         s_p<Menu> _parent = nullptr;
@@ -68,6 +59,18 @@ namespace pe {
         std::vector<std::vector<int>> _selectionGrid;
 
         bool _pendingActivation = false;
+
+        void controllerButtonReleased(GAMEPAD_BUTTON button);
+        void controllerButtonPressed(GAMEPAD_BUTTON button);
+
+        void keyPressed(sf::Keyboard::Key& key);
+        void keyReleased(sf::Keyboard::Key& key);
+        void mouseButtonPressed(const int mx, const int my, const int button);
+        void mouseButtonReleased(const int mx, const int my, const int button);
+        void mouseMoved(const int mx, const int my);
+        void mouseWheelScrolled(sf::Event::MouseWheelScrollEvent mouseWheelScroll);
+
+        void textEntered(sf::Uint32 character);
     };
 }
 

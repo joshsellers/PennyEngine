@@ -14,6 +14,10 @@ void pe::intern::UIManager::draw() {
     // draw menus
 }
 
+std::vector<s_p<pe::Menu>>& pe::intern::UIManager::getMenus() {
+    return _menus;
+}
+
 void pe::intern::UIManager::setSurface(sf::RenderTexture* surface) {
     _surface = surface;
 }
