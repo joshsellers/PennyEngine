@@ -227,6 +227,7 @@
     <ClInclude Include="PennyEngine\input\KeyListener.h" />
     <ClInclude Include="PennyEngine\input\MouseListener.h" />
     <ClInclude Include="PennyEngine\PennyEngine.h" />
+    <ClInclude Include="PennyEngine\ui\components\ComponentAppearanceConfig.h" />
     <ClInclude Include="PennyEngine\ui\components\MenuComponent.h" />
     <ClInclude Include="PennyEngine\ui\Menu.h" />
     <ClInclude Include="PennyEngine\ui\UI.h" />
