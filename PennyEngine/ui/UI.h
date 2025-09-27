@@ -32,7 +32,7 @@ namespace pe {
                                                  // could use maps instead of vectors for this
                                                  // so we don't have to store shared_ptrs to elements or menus as member vars anywhere
                                                  // call elements either MenuElement or MenuComponent
-                                                 // menu->addSubMenu(menu) / UI::getMenu(id)->addSubMenu(menu)
+                                                 // menu->addSubMenu(menu) / UI::getMenu(id)->addSubMenu(menu)  // actually call them parent and child menus
                                                  // Menu::close(openSuperMenu = true) - by default opens the next menu higher in the chain
                                                  // Menu::open(closeSupermenus = true) - by default closes all menus higher in the chain
                                                  // Don't forget pendingActivation thing, check PL UIMenu.cpp

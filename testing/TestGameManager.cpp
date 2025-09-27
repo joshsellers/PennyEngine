@@ -4,11 +4,13 @@
 #include "../PennyEngine/audio/SoundManager.h"
 #include "../PennyEngine/ui/UI.h"
 
-TestGameManager::TestGameManager() : _testObject("MEMBERVARTEST") {
+#include "../PennyEngine/core/Defines.h"
+
+TestGameManager::TestGameManager() : _testObject("MEMBERVARTEST", 1) {
     PennyEngine::addInputListener(this);
 
     for (int i = 0; i < 5; i++) {
-        _testObjects.push_back(std::shared_ptr<TestClass>(new TestClass("test" + std::to_string(i))));
+        _testObjects.push_back(new_s_p(TestClass, ("test" + std::to_string(i), 1)));
     }
 }
 

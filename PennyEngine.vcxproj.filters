@@ -33,7 +33,7 @@
     <ClCompile Include="PennyEngine\input\InputEventDistributor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PennyEngine\input\Gamepad\Gamepad.cpp">
+    <ClCompile Include="PennyEngine\input\gamepad\Gamepad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PennyEngine\core\Util.cpp">
@@ -246,6 +246,12 @@
     <ClCompile Include="PennyEngine\ui\UIManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PennyEngine\ui\components\MenuComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PennyEngine\ui\Menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PennyEngine\PennyEngine.h">
@@ -278,10 +284,10 @@
     <ClInclude Include="testing\TestClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PennyEngine\input\Gamepad\Gamepad.h">
+    <ClInclude Include="PennyEngine\input\gamepad\Gamepad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PennyEngine\input\Gamepad\GamepadButtons.h">
+    <ClInclude Include="PennyEngine\input\gamepad\GamepadButtons.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PennyEngine\core\Util.h">
@@ -290,7 +296,7 @@
     <ClInclude Include="PennyEngine\core\Logger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PennyEngine\input\Gamepad\GamepadListener.h">
+    <ClInclude Include="PennyEngine\input\gamepad\GamepadListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PennyEngine\audio\SoundManager.h">
@@ -329,10 +335,20 @@
     <ClInclude Include="PennyEngine\ui\UIManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PennyEngine\ui\components\MenuComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PennyEngine\ui\Menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PennyEngine\core\Defines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="soloud\audiosource\speech\Elements.def">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

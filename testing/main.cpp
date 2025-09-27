@@ -9,7 +9,7 @@
 int main() {
     TestGameManager testManager;
 
-    TestClass testObject("MAINTEST"); 
+    TestClass testObject("MAINTEST", 2); 
 
     PennyEngine::setAppName("TestApp");
     PennyEngine::setWindowTitle(PennyEngine::getAppName());
