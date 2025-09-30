@@ -3,15 +3,30 @@
 #include <iostream>
 #include "../PennyEngine/audio/SoundManager.h"
 #include "../PennyEngine/ui/UI.h"
-
+#include "../PennyEngine/ui/components/Button.h"
 #include "../PennyEngine/core/Defines.h"
 
 TestGameManager::TestGameManager() : _testObject("MEMBERVARTEST", 1) {
+    if (!_font.loadFromFile("res/font.ttf")) {
+        pe::Logger::log("Failed to load font");
+    }
+
     PennyEngine::addInputListener(this);
 
     for (int i = 0; i < 5; i++) {
         _testObjects.push_back(new_s_p(TestClass, ("test" + std::to_string(i), 1)));
     }
+
+    pe::BUTTON_HOVER_CONFIG = pe::BASE_COMPONENT_CONFIG.offsetBy(48, 0);
+    pe::BUTTON_CLICKED_CONFIG = pe::BUTTON_HOVER_CONFIG.offsetBy(48, 0);
+
+    const auto& menu = new_s_p(pe::Menu, ("testmenu"));
+    menu->addComponent(new_s_p(pe::Button, ("test button", 10, 10, 9, 3, "test", _font, this)));
+    menu->getComponent("test button")->setCharacterSize(4.f);
+    menu->getComponent("test button")->setTextVerticalOffset(-2.f);
+
+    menu->open();
+    pe::UI::addMenu(menu);
 }
 
 void TestGameManager::update() {
@@ -23,31 +38,31 @@ void TestGameManager::update() {
 }
 
 void TestGameManager::draw(sf::RenderTexture& surface) {
-    sf::RectangleShape shape;
-    shape.setFillColor(sf::Color::White);
-    shape.setSize({ (float)PennyEngine::getRenderResolution().width, (float)PennyEngine::getRenderResolution().height});
-    shape.setPosition(0, 0);
+    //sf::RectangleShape shape;
+    //shape.setFillColor(sf::Color::White);
+    //shape.setSize({ (float)PennyEngine::getRenderResolution().width, (float)PennyEngine::getRenderResolution().height});
+    //shape.setPosition(0, 0);
 
-    surface.draw(shape);
+    //surface.draw(shape);
 
-    sf::CircleShape circle;
-    circle.setFillColor(sf::Color::Red);
-    circle.setRadius(200.f);
-    circle.setPosition(PennyEngine::getRenderResolution().width / 2, PennyEngine::getRenderResolution().height / 2);
+    //sf::CircleShape circle;
+    //circle.setFillColor(sf::Color::Red);
+    //circle.setRadius(200.f);
+    //circle.setPosition(PennyEngine::getRenderResolution().width / 2, PennyEngine::getRenderResolution().height / 2);
 
-    surface.draw(circle);
+    //surface.draw(circle);
 
-    sf::RectangleShape border;
-    border.setFillColor(sf::Color::Transparent);
-    border.setOutlineColor(sf::Color::Blue);
-    border.setOutlineThickness(-2.f);
-    border.setSize({ (float)PennyEngine::getRenderResolution().width, (float)PennyEngine::getRenderResolution().height });
+    //sf::RectangleShape border;
+    //border.setFillColor(sf::Color::Transparent);
+    //border.setOutlineColor(sf::Color::Blue);
+    //border.setOutlineThickness(-2.f);
+    //border.setSize({ (float)PennyEngine::getRenderResolution().width, (float)PennyEngine::getRenderResolution().height });
 
-    surface.draw(border);
+    //surface.draw(border);
 }
 
 void TestGameManager::drawUI(sf::RenderTexture& surface) {
-    sf::RectangleShape border;
+    /*sf::RectangleShape border;
     border.setFillColor(sf::Color::Transparent);
     border.setOutlineColor(sf::Color::Red);
     border.setOutlineThickness(-1.f);
@@ -61,7 +76,11 @@ void TestGameManager::drawUI(sf::RenderTexture& surface) {
     circle.setOrigin(circle.getRadius(), circle.getRadius());
     circle.setPosition(100, 50);
 
-    pe::UI::draw(circle);
+    pe::UI::draw(circle);*/
+}
+
+void TestGameManager::buttonPressed(std::string buttonId) {
+    pe::Logger::log(buttonId);
 }
 
 void TestGameManager::keyPressed(sf::Keyboard::Key& key) {
@@ -78,7 +97,7 @@ void TestGameManager::mouseButtonPressed(const int mx, const int my, const int b
 }
 
 void TestGameManager::mouseButtonReleased(const int mx, const int my, const int button) {
-    std::cout << button << std::endl;
+    //std::cout << button << std::endl;
 }
 
 void TestGameManager::mouseMoved(const int mx, const int my) {

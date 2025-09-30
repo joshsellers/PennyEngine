@@ -6,8 +6,13 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include "components/MenuComponent.h"
-
 #include "../core/Defines.h"
+
+namespace pe {
+    namespace intern {
+        class UIManager;
+    }
+}
 
 namespace pe {
     class Menu {
@@ -39,7 +44,7 @@ namespace pe {
 
         std::string getIdentifier() const;
 
-        friend class UIManager;
+        friend class pe::intern::UIManager;
     private:
         const std::string _id;
 

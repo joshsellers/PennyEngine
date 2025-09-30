@@ -21,6 +21,8 @@ namespace pe {
             sf::RenderTexture* getSurface();
 
             std::vector<s_p<Menu>>& getMenus();
+
+            s_p<sf::Texture> getSpriteSheet() const;
         protected:
             virtual void keyPressed(sf::Keyboard::Key& key);
             virtual void keyReleased(sf::Keyboard::Key& key);
@@ -39,6 +41,8 @@ namespace pe {
             sf::RenderTexture* _surface = nullptr;
 
             std::vector<s_p<Menu>> _menus;
+
+            s_p<sf::Texture> _spriteSheet = new_s_p(sf::Texture, ());
         };
     }
 }

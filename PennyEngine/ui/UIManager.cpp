@@ -1,17 +1,27 @@
 #include "UIManager.h"
 #include "../PennyEngine.h"
+#include "../core/Logger.h"
 
 pe::intern::UIManager::UIManager() {
     PennyEngine::addInputListener(this);
+
+    if (!_spriteSheet->loadFromFile("res/ui_sprite_sheet.png")) {
+        Logger::log("Failed to load UI sprite sheet");
+    }
 }
 
 void pe::intern::UIManager::update() {
+    for (const auto& menu : getMenus()) {
+        if (menu->isActive()) menu->update();
+    }
 }
 
 void pe::intern::UIManager::draw() {
     if (!PennyEngine::isStarted()) return;
 
-    // draw menus
+    for (const auto& menu : getMenus()) {
+        if (menu->isActive()) menu->draw(*getSurface());
+    }
 }
 
 std::vector<s_p<pe::Menu>>& pe::intern::UIManager::getMenus() {
@@ -26,31 +36,60 @@ sf::RenderTexture* pe::intern::UIManager::getSurface() {
     return _surface;
 }
 
+s_p<sf::Texture> pe::intern::UIManager::getSpriteSheet() const {
+    return _spriteSheet;
+}
+
 void pe::intern::UIManager::keyPressed(sf::Keyboard::Key& key) {
+    for (const auto& menu : getMenus()) {
+        if (menu->isActive()) menu->keyPressed(key);
+    }
 }
 
 void pe::intern::UIManager::keyReleased(sf::Keyboard::Key& key) {
+    for (const auto& menu : getMenus()) {
+        if (menu->isActive()) menu->keyReleased(key);
+    }
 }
 
 void pe::intern::UIManager::mouseButtonPressed(const int mx, const int my, const int button) {
+    for (const auto& menu : getMenus()) {
+        if (menu->isActive()) menu->mouseButtonPressed(mx, my, button);
+    }
 }
 
 void pe::intern::UIManager::mouseButtonReleased(const int mx, const int my, const int button) {
+    for (const auto& menu : getMenus()) {
+        if (menu->isActive()) menu->mouseButtonReleased(mx, my, button);
+    }
 }
 
 void pe::intern::UIManager::mouseMoved(const int mx, const int my) {
+    for (const auto& menu : getMenus()) {
+        if (menu->isActive()) menu->mouseMoved(mx, my);
+    }
 }
 
 void pe::intern::UIManager::mouseWheelScrolled(sf::Event::MouseWheelScrollEvent mouseWheelScroll) {
+    for (const auto& menu : getMenus()) {
+        if (menu->isActive()) menu->mouseWheelScrolled(mouseWheelScroll);
+    }
 }
 
 void pe::intern::UIManager::controllerButtonReleased(GAMEPAD_BUTTON button) {
+    for (const auto& menu : getMenus()) {
+        if (menu->isActive()) menu->controllerButtonReleased(button);
+    }
 }
 
 void pe::intern::UIManager::controllerButtonPressed(GAMEPAD_BUTTON button) {
+    for (const auto& menu : getMenus()) {
+        if (menu->isActive()) menu->controllerButtonPressed(button);
+    }
 }
 
 void pe::intern::UIManager::gamepadDisconnected() {
+
 }
 
 void pe::intern::UIManager::gamepadConnected() {

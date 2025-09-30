@@ -252,6 +252,9 @@
     <ClCompile Include="PennyEngine\ui\Menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PennyEngine\ui\components\Button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PennyEngine\PennyEngine.h">
@@ -345,6 +348,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PennyEngine\ui\components\ComponentAppearanceConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PennyEngine\ui\components\AppearanceConfigs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PennyEngine\ui\components\ButtonListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PennyEngine\ui\components\Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

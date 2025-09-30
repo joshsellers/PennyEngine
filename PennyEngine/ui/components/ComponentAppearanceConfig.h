@@ -5,7 +5,7 @@
 
 namespace pe {
     struct ComponentAppearanceConfig {
-        ComponentAppearanceConfig(sf::IntRect topLeftCorner, sf::IntRect leftEdge, sf::IntRect bottomLeftCorner,
+        ComponentAppearanceConfig(float pixelSize, sf::IntRect topLeftCorner, sf::IntRect leftEdge, sf::IntRect bottomLeftCorner,
             sf::IntRect centerTop, sf::IntRect center, sf::IntRect centerBottom,
             sf::IntRect topRightCorner, sf::IntRect rightEdge, sf::IntRect bottomRightCorner) {
             this->topLeftCorner = topLeftCorner;
@@ -19,6 +19,8 @@ namespace pe {
             this->topRightCorner = topRightCorner;
             this->rightEdge = rightEdge;
             this->bottomRightCorner = bottomRightCorner;
+
+            this->pixelSize = pixelSize;
         }
 
         sf::IntRect topLeftCorner;
@@ -32,6 +34,24 @@ namespace pe {
         sf::IntRect topRightCorner;
         sf::IntRect rightEdge;
         sf::IntRect bottomRightCorner;
+
+        // How big a pixel of the texture should appear on-screen
+        float pixelSize;
+
+        ComponentAppearanceConfig offsetBy(int x, int y) {
+            return {
+                pixelSize,
+                {topLeftCorner.left + x, topLeftCorner.top + y, topLeftCorner.width, topLeftCorner.height},
+                {leftEdge.left + x, leftEdge.top + y, leftEdge.width, leftEdge.height},
+                {bottomLeftCorner.left + x, bottomLeftCorner.top + y, bottomLeftCorner.width, bottomLeftCorner.height},
+                {centerTop.left + x, centerTop.top + y, centerTop.width, centerTop.height},
+                {center.left + x, center.top + y, center.width, center.height},
+                {centerBottom.left + x, centerBottom.top + y, centerBottom.width, centerBottom.height},
+                {topRightCorner.left + x, topRightCorner.top + y, topRightCorner.width, topRightCorner.height},
+                {rightEdge.left + x, rightEdge.top + y, rightEdge.width, rightEdge.height},
+                {bottomRightCorner.left + x, bottomRightCorner.top + y, bottomRightCorner.width, bottomRightCorner.height},
+            };
+        }
     };
 }
 

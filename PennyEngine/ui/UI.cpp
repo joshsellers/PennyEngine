@@ -7,7 +7,7 @@ sf::Vector2f pe::UI::percentToScreenPos(sf::Vector2f pos) {
 }
 
 sf::Vector2f pe::UI::percentToScreenPos(float x, float y) {
-    return percentToScreenPos(x, y);
+    return percentToScreenPos({ x, y });
 }
 
 sf::Vector2f pe::UI::percentToScreenDimensions(sf::Vector2f dimensions) {
@@ -36,4 +36,8 @@ s_p<pe::Menu> pe::UI::getMenu(std::string id) {
     for (const auto& menu : _instance.getMenus()) {
         if (menu->getIdentifier() == id) return menu;
     }
+}
+
+s_p<sf::Texture> pe::UI::getSpriteSheet() {
+    return _instance.getSpriteSheet();
 }

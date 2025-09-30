@@ -134,6 +134,7 @@
     <ClCompile Include="PennyEngine\core\Util.cpp" />
     <ClCompile Include="PennyEngine\input\gamepad\Gamepad.cpp" />
     <ClCompile Include="PennyEngine\input\InputEventDistributor.cpp" />
+    <ClCompile Include="PennyEngine\ui\components\Button.cpp" />
     <ClCompile Include="PennyEngine\ui\components\MenuComponent.cpp" />
     <ClCompile Include="PennyEngine\ui\Menu.cpp" />
     <ClCompile Include="PennyEngine\ui\UI.cpp" />
@@ -227,6 +228,9 @@
     <ClInclude Include="PennyEngine\input\KeyListener.h" />
     <ClInclude Include="PennyEngine\input\MouseListener.h" />
     <ClInclude Include="PennyEngine\PennyEngine.h" />
+    <ClInclude Include="PennyEngine\ui\components\AppearanceConfigs.h" />
+    <ClInclude Include="PennyEngine\ui\components\Button.h" />
+    <ClInclude Include="PennyEngine\ui\components\ButtonListener.h" />
     <ClInclude Include="PennyEngine\ui\components\ComponentAppearanceConfig.h" />
     <ClInclude Include="PennyEngine\ui\components\MenuComponent.h" />
     <ClInclude Include="PennyEngine\ui\Menu.h" />
