@@ -61,7 +61,6 @@ void pe::intern::UIManager::mouseButtonPressed(const int mx, const int my, const
 
 void pe::intern::UIManager::mouseButtonReleased(const int mx, const int my, const int button) {
     const sf::Vector2f mouseOffset = PennyEngine::getUIMouseOffset();
-    Logger::log(sf::Vector2f((float)mx + mouseOffset.x, (float)my + mouseOffset.y));
     for (const auto& menu : getMenus()) {
         if (menu->isActive()) menu->mouseButtonReleased(mx + mouseOffset.x, my + mouseOffset.y, button);
     }

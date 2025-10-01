@@ -21,7 +21,8 @@ TestGameManager::TestGameManager() : _testObject("MEMBERVARTEST", 1) {
     pe::BUTTON_CLICKED_CONFIG = pe::BUTTON_HOVER_CONFIG.offsetBy(48, 0);
 
     const auto& menu = new_s_p(pe::Menu, ("testmenu"));
-    menu->addComponent(new_s_p(pe::Button, ("test button", 10, 10, 9, 3, "test", _font, this)));
+    menu->addComponent(new_s_p(pe::Button, ("test button", 10, 10, 2, 1, "", _font, this)));
+    menu->addComponent(new_s_p(pe::Button, ("test button2", 10, 15, 4, 1, "", _font, this)));
     menu->getComponent("test button")->setCharacterSize(4.f);
     menu->getComponent("test button")->setTextVerticalOffset(-2.f);
 
@@ -38,12 +39,12 @@ void TestGameManager::update() {
 }
 
 void TestGameManager::draw(sf::RenderTexture& surface) {
-    /*sf::RectangleShape shape;
+    sf::RectangleShape shape;
     shape.setFillColor(sf::Color::White);
     shape.setSize({ (float)PennyEngine::getRenderResolution().width, (float)PennyEngine::getRenderResolution().height});
     shape.setPosition(0, 0);
 
-    surface.draw(shape);*/
+    surface.draw(shape);
 
     /*sf::CircleShape circle;
     circle.setFillColor(sf::Color::Red);
@@ -91,6 +92,8 @@ void TestGameManager::keyReleased(sf::Keyboard::Key& key) {
 
     if (key == sf::Keyboard::Key::Hyphen) PennyEngine::getCamera().zoom(2.f);
     else if (key == sf::Keyboard::Key::Equal) PennyEngine::getCamera().zoom(0.5f);
+
+    if (key == sf::Keyboard::Key::Escape) PennyEngine::stop();
 }
 
 void TestGameManager::mouseButtonPressed(const int mx, const int my, const int button) {

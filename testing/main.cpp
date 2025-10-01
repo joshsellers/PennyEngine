@@ -12,11 +12,11 @@ int main() {
     PennyEngine::setAppName("TestApp");
     PennyEngine::setWindowTitle(PennyEngine::getAppName());
 
-    PennyEngine::setFullscreen(false);
+    PennyEngine::setFullscreen(true);
     PennyEngine::useDisplayResForUI(true);
     PennyEngine::setRenderResolution({400, 400});
-    //PennyEngine::setDisplayResolution({ (int)sf::VideoMode::getDesktopMode().width, (int)sf::VideoMode::getDesktopMode().height });
-    PennyEngine::setDisplayResolution({ 900, 1080 });
+    PennyEngine::setDisplayResolution({ (int)sf::VideoMode::getDesktopMode().width, (int)sf::VideoMode::getDesktopMode().height });
+    //PennyEngine::setDisplayResolution({ 1080, 1080 });
 
     PennyEngine::setFramerateLimit(60);
 

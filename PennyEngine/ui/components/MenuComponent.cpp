@@ -12,8 +12,8 @@ pe::MenuComponent::MenuComponent(const std::string id, float x, float y, float w
     _appearance = appearance;
 
     if (autoCenter) {
-        _pos.x -= width / 2.f;
-        _pos.y -= height / 2.f;
+        _pos.x -= _size.x / 2.f;
+        _pos.y -= _size.y / 2.f;
     }
 
     const auto& spriteSheet = UI::getSpriteSheet().get();
@@ -45,7 +45,7 @@ void pe::MenuComponent::drawShapes(sf::RenderTexture& surface, const sf::RenderS
     const float width = _size.x + padding * 2;
     const float height = _size.y;
 
-    const float pixelSize = _appearance.pixelSize;
+    const float pixelSize = UI::percentToScreenWidth(_appearance.pixelSize);
 
     _leftEdge.setSize({ pixelSize * _appearance.leftEdge.width, height });
     _leftEdge.setPosition(x, y);
@@ -83,6 +83,7 @@ void pe::MenuComponent::drawShapes(sf::RenderTexture& surface, const sf::RenderS
     _rightBottomCorner.setPosition(x + _leftEdge.getGlobalBounds().width + _center.getGlobalBounds().width, y + _rightEdge.getGlobalBounds().height);
     _rightBottomCorner.setTextureRect({ _appearance.bottomRightCorner.left, _appearance.bottomRightCorner.top, _appearance.bottomRightCorner.width, _appearance.bottomRightCorner.height });
 
+    constexpr int maxAttempts = 10;
     int timesLeft = 1;
     while (!_leftEdge.getGlobalBounds().intersects(_center.getGlobalBounds())) {
         constexpr float gapCorrectionStep = 0.1f;
@@ -90,6 +91,7 @@ void pe::MenuComponent::drawShapes(sf::RenderTexture& surface, const sf::RenderS
         _leftEdge.move(gapCorrectionStep, 0);
         _leftBottomCorner.move(gapCorrectionStep, 0);
         timesLeft++;
+        if (timesLeft > maxAttempts) break;
     }
 
     int timesRight = 1;
@@ -99,10 +101,11 @@ void pe::MenuComponent::drawShapes(sf::RenderTexture& surface, const sf::RenderS
         _rightEdge.move(gapCorrectionStep, 0);
         _rightBottomCorner.move(gapCorrectionStep, 0);
         timesRight++;
+        if (timesRight > maxAttempts) break;
     } 
 
-    if (timesLeft > 1 || timesRight > 1) {
-        Logger::log("Cap correction took longer than one attempt\ntimesLeft was: " + std::to_string(timesLeft) + "\ntimesRight was: " + std::to_string(timesRight));
+    if (timesLeft > 5 || timesRight > 5) {
+        Logger::log("Cap correction took longer than five attempts\ntimesLeft was: " + std::to_string(timesLeft) + "\ntimesRight was: " + std::to_string(timesRight));
     }
 
     surface.draw(_leftEdge);
