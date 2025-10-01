@@ -38,31 +38,31 @@ void TestGameManager::update() {
 }
 
 void TestGameManager::draw(sf::RenderTexture& surface) {
-    //sf::RectangleShape shape;
-    //shape.setFillColor(sf::Color::White);
-    //shape.setSize({ (float)PennyEngine::getRenderResolution().width, (float)PennyEngine::getRenderResolution().height});
-    //shape.setPosition(0, 0);
+    /*sf::RectangleShape shape;
+    shape.setFillColor(sf::Color::White);
+    shape.setSize({ (float)PennyEngine::getRenderResolution().width, (float)PennyEngine::getRenderResolution().height});
+    shape.setPosition(0, 0);
 
-    //surface.draw(shape);
+    surface.draw(shape);*/
 
-    //sf::CircleShape circle;
-    //circle.setFillColor(sf::Color::Red);
-    //circle.setRadius(200.f);
-    //circle.setPosition(PennyEngine::getRenderResolution().width / 2, PennyEngine::getRenderResolution().height / 2);
+    /*sf::CircleShape circle;
+    circle.setFillColor(sf::Color::Red);
+    circle.setRadius(200.f);
+    circle.setPosition(PennyEngine::getRenderResolution().width / 2, PennyEngine::getRenderResolution().height / 2);
 
-    //surface.draw(circle);
+    surface.draw(circle);*/
 
-    //sf::RectangleShape border;
-    //border.setFillColor(sf::Color::Transparent);
-    //border.setOutlineColor(sf::Color::Blue);
-    //border.setOutlineThickness(-2.f);
-    //border.setSize({ (float)PennyEngine::getRenderResolution().width, (float)PennyEngine::getRenderResolution().height });
+    sf::RectangleShape border;
+    border.setFillColor(sf::Color::Transparent);
+    border.setOutlineColor(sf::Color::Blue);
+    border.setOutlineThickness(-2.f);
+    border.setSize({ (float)PennyEngine::getRenderResolution().width, (float)PennyEngine::getRenderResolution().height });
 
-    //surface.draw(border);
+    surface.draw(border);
 }
 
 void TestGameManager::drawUI(sf::RenderTexture& surface) {
-    /*sf::RectangleShape border;
+    sf::RectangleShape border;
     border.setFillColor(sf::Color::Transparent);
     border.setOutlineColor(sf::Color::Red);
     border.setOutlineThickness(-1.f);
@@ -70,7 +70,7 @@ void TestGameManager::drawUI(sf::RenderTexture& surface) {
 
     surface.draw(border);
 
-    sf::CircleShape circle;
+    /*sf::CircleShape circle;
     circle.setFillColor(sf::Color::Blue);
     circle.setRadius(pe::UI::percentToScreenWidth(10));
     circle.setOrigin(circle.getRadius(), circle.getRadius());

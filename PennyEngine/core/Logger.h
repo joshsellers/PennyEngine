@@ -62,6 +62,34 @@ namespace pe {
             else _deferredMessageQueue.push(message);
         }
 
+        static void log(int message) {
+            log(std::to_string(message));
+        }
+
+        static void log(float message) {
+            log(std::to_string(message));
+        }
+
+        static void log(unsigned int message) {
+            log(std::to_string(message));
+        }
+
+        static void log(long long message) {
+            log(std::to_string(message));
+        }
+
+        static void log(double message) {
+            log(std::to_string(message));
+        }
+
+        static void log(sf::Vector2f message) {
+            log(std::to_string(message.x) + ", " + std::to_string(message.y));
+        }
+
+        static void log(sf::Vector2i message) {
+            log(std::to_string(message.x) + ", " + std::to_string(message.y));
+        }
+
         static const std::string getLogFileName() {
             return _logFileName;
         }

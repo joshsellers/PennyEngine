@@ -14,9 +14,14 @@ namespace pe {
             void handleEvent(sf::Event& event);
 
             void addListener(InputListener* listener);
+
+            void setUIMouseOffset(sf::Vector2f offset);
+            sf::Vector2f getUIMouseOffset() const;
         private:
             std::vector<KeyListener*> _keyListeners;
             std::vector<MouseListener*> _mouseListeners;
+
+            sf::Vector2f _uiMouseOffset;
         };
     }
 }

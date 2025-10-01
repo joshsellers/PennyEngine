@@ -83,10 +83,27 @@ void pe::MenuComponent::drawShapes(sf::RenderTexture& surface, const sf::RenderS
     _rightBottomCorner.setPosition(x + _leftEdge.getGlobalBounds().width + _center.getGlobalBounds().width, y + _rightEdge.getGlobalBounds().height);
     _rightBottomCorner.setTextureRect({ _appearance.bottomRightCorner.left, _appearance.bottomRightCorner.top, _appearance.bottomRightCorner.width, _appearance.bottomRightCorner.height });
 
-    const float gapCorrectionOffset = 1.f; //(center.getPosition().x - (leftEdge.getPosition().x + leftEdge.getGlobalBounds().width)) * 100.f;
-    _leftEdge.move(gapCorrectionOffset, 0);
-    _leftTopCorner.move(gapCorrectionOffset, 0);
-    _leftBottomCorner.move(gapCorrectionOffset, 0);
+    int timesLeft = 1;
+    while (!_leftEdge.getGlobalBounds().intersects(_center.getGlobalBounds())) {
+        constexpr float gapCorrectionStep = 0.1f;
+        _leftTopCorner.move(gapCorrectionStep, 0);
+        _leftEdge.move(gapCorrectionStep, 0);
+        _leftBottomCorner.move(gapCorrectionStep, 0);
+        timesLeft++;
+    }
+
+    int timesRight = 1;
+    while (!_rightEdge.getGlobalBounds().intersects(_center.getGlobalBounds())) {
+        constexpr float gapCorrectionStep = -0.1f;
+        _rightTopCorner.move(gapCorrectionStep, 0);
+        _rightEdge.move(gapCorrectionStep, 0);
+        _rightBottomCorner.move(gapCorrectionStep, 0);
+        timesRight++;
+    } 
+
+    if (timesLeft > 1 || timesRight > 1) {
+        Logger::log("Cap correction took longer than one attempt\ntimesLeft was: " + std::to_string(timesLeft) + "\ntimesRight was: " + std::to_string(timesRight));
+    }
 
     surface.draw(_leftEdge);
     surface.draw(_leftTopCorner);

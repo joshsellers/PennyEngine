@@ -49,6 +49,8 @@ public:
 
     static bool playerIsUsingMouse();
 
+    static sf::Vector2f getUIMouseOffset();
+
     friend class pe::intern::InputEventDistributor;
 private:
     static inline pe::intern::EngineInstance _instance;

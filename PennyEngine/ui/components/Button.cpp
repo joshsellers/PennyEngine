@@ -35,13 +35,6 @@ void pe::Button::update() {
 }
 
 void pe::Button::draw(sf::RenderTexture& surface) {
-    sf::RectangleShape hitBox;
-    hitBox.setPosition(getBounds().left, getBounds().top);
-    hitBox.setSize({ getBounds().width, getBounds().height });
-    hitBox.setFillColor(sf::Color::Transparent);
-    hitBox.setOutlineColor(sf::Color::Red);
-    hitBox.setOutlineThickness(2.f);
-    surface.draw(hitBox);
 }
 
 sf::Vector2i pe::Button::getMousePos() const {

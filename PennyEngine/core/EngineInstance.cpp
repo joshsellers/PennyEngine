@@ -78,7 +78,7 @@ void pe::intern::EngineInstance::createWindow(GfxResources& gfxResources) {
     bool adjustForFullscreen = false;
     if (fullscreen && physicalRes != displayRes) {
         float scale = 1.0;
-        if (displayRes.width > displayRes.height) {
+        if (displayRes.width > displayRes.height && displayRes.height * ((float)physicalRes.width / (float)displayRes.width) <= physicalRes.height) {
             scale = (float)physicalRes.width / (float)displayRes.width;
         } else {
             scale = (float)physicalRes.height / (float)displayRes.height;
@@ -154,6 +154,8 @@ void pe::intern::EngineInstance::createWindow(GfxResources& gfxResources) {
         uiSurfaceSprite.setPosition((float)physicalRes.width / 2.f - (float)uiSurfaceSprite.getGlobalBounds().width / 2.f,
             (float)physicalRes.height / 2.f - (float)uiSurfaceSprite.getGlobalBounds().height / 2.f);
     }
+
+    _inputManager.setUIMouseOffset(-uiSurfaceSprite.getPosition());
 }
 
 void pe::intern::EngineInstance::mainLoop(GfxResources& gfxResources) {

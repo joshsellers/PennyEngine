@@ -53,20 +53,24 @@ void pe::intern::UIManager::keyReleased(sf::Keyboard::Key& key) {
 }
 
 void pe::intern::UIManager::mouseButtonPressed(const int mx, const int my, const int button) {
+    const sf::Vector2f mouseOffset = PennyEngine::getUIMouseOffset();
     for (const auto& menu : getMenus()) {
-        if (menu->isActive()) menu->mouseButtonPressed(mx, my, button);
+        if (menu->isActive()) menu->mouseButtonPressed(mx + mouseOffset.x, my + mouseOffset.y, button);
     }
 }
 
 void pe::intern::UIManager::mouseButtonReleased(const int mx, const int my, const int button) {
+    const sf::Vector2f mouseOffset = PennyEngine::getUIMouseOffset();
+    Logger::log(sf::Vector2f((float)mx + mouseOffset.x, (float)my + mouseOffset.y));
     for (const auto& menu : getMenus()) {
-        if (menu->isActive()) menu->mouseButtonReleased(mx, my, button);
+        if (menu->isActive()) menu->mouseButtonReleased(mx + mouseOffset.x, my + mouseOffset.y, button);
     }
 }
 
 void pe::intern::UIManager::mouseMoved(const int mx, const int my) {
+    const sf::Vector2f mouseOffset = PennyEngine::getUIMouseOffset();
     for (const auto& menu : getMenus()) {
-        if (menu->isActive()) menu->mouseMoved(mx, my);
+        if (menu->isActive()) menu->mouseMoved(mx + mouseOffset.x, my + mouseOffset.y);
     }
 }
 

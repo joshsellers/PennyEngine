@@ -79,3 +79,11 @@ void pe::intern::InputEventDistributor::addListener(InputListener* listener) {
         pe::Gamepad::addListener(dynamic_cast<GamepadListener*>(listener));
     }
 }
+
+void pe::intern::InputEventDistributor::setUIMouseOffset(sf::Vector2f offset) {
+    _uiMouseOffset = offset;
+}
+
+sf::Vector2f pe::intern::InputEventDistributor::getUIMouseOffset() const {
+    return _uiMouseOffset;
+}

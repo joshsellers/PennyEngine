@@ -95,3 +95,7 @@ std::string PennyEngine::getAppName() {
 bool PennyEngine::playerIsUsingMouse() {
     return _usingMouse;
 }
+
+sf::Vector2f PennyEngine::getUIMouseOffset() {
+    return _instance.getInputManager().getUIMouseOffset();
+}
