@@ -20,14 +20,62 @@ TestGameManager::TestGameManager() : _testObject("MEMBERVARTEST", 1) {
     pe::BUTTON_HOVER_CONFIG = pe::BASE_COMPONENT_CONFIG.offsetBy(48, 0);
     pe::BUTTON_CLICKED_CONFIG = pe::BUTTON_HOVER_CONFIG.offsetBy(48, 0);
 
-    const auto& menu = new_s_p(pe::Menu, ("testmenu"));
-    menu->addComponent(new_s_p(pe::Button, ("test button", 10, 10, 2, 1, "", _font, this)));
-    menu->addComponent(new_s_p(pe::Button, ("test button2", 10, 15, 4, 1, "", _font, this)));
-    menu->getComponent("test button")->setCharacterSize(4.f);
-    menu->getComponent("test button")->setTextVerticalOffset(-2.f);
+    const auto& startMenu = new_s_p(pe::Menu, ("startMenu"));
+    startMenu->addComponent(new_s_p(pe::Button, ("startButton", 50, 50, 9, 1, "start", _font, this)));
+    startMenu->getComponent("startButton")->setGamepadSelectionId(0);
+    startMenu->addComponent(new_s_p(pe::Button, ("settingsButton", 50, 55, 9, 1, "settings", _font, this)));
+    startMenu->getComponent("settingsButton")->setGamepadSelectionId(1);
+    startMenu->addComponent(new_s_p(pe::Button, ("exitButton", 50, 60, 9, 1, "exit", _font, this)));
+    startMenu->getComponent("exitButton")->setGamepadSelectionId(2);
+    startMenu->defineGamepadSelectionGrid({
+        {0},
+        {1},
+        {2}
+    });
 
-    menu->open();
-    pe::UI::addMenu(menu);
+    startMenu->open();
+    pe::UI::addMenu(startMenu);
+
+    const auto& subStartMenu = new_s_p(pe::Menu, ("subStartMenu"));
+    subStartMenu->addComponent(new_s_p(pe::Button, ("test0", 50, 50, 9, 1, "test0", _font, this)));
+    subStartMenu->getComponent("test0")->setGamepadSelectionId(0);
+    subStartMenu->addComponent(new_s_p(pe::Button, ("test1", 50, 55, 9, 1, "test1", _font, this)));
+    subStartMenu->getComponent("test1")->setGamepadSelectionId(1);
+    subStartMenu->addComponent(new_s_p(pe::Button, ("back_subStartMenu", 50, 60, 9, 1, "back", _font, this)));
+    subStartMenu->getComponent("back_subStartMenu")->setGamepadSelectionId(2);
+    subStartMenu->defineGamepadSelectionGrid({
+        {0},
+        {1},
+        {2}
+    });
+
+    startMenu->addChild(subStartMenu);
+    pe::UI::addMenu(subStartMenu);
+
+    pe::UI::addMenu(new_s_p(pe::Menu, ("settingsMenu")));
+    pe::UI::getMenu("settingsMenu")->addComponent(new_s_p(pe::Button, ("fullscreen", 50, 50, 9, 1, "fullscreen", _font, this)));
+    pe::UI::getMenu("settingsMenu")->getComponent("fullscreen")->setGamepadSelectionId(0);
+    pe::UI::getMenu("settingsMenu")->addComponent(new_s_p(pe::Button, ("back_settingsMenu", 50, 55, 9, 1, "back", _font, this)));
+    pe::UI::getMenu("settingsMenu")->getComponent("back_settingsMenu")->setGamepadSelectionId(1);
+    pe::UI::getMenu("settingsMenu")->defineGamepadSelectionGrid({
+        {0},
+        {1}
+    });
+
+    pe::UI::getMenu("startMenu")->addChild(pe::UI::getMenu("settingsMenu"));
+}
+
+void TestGameManager::buttonPressed(std::string buttonId) {
+    pe::Logger::log(buttonId);
+    if (buttonId == "startButton") {
+        pe::UI::getMenu("subStartMenu")->open();
+    } else if (buttonId == "settingsButton") {
+        pe::UI::getMenu("settingsMenu")->open();
+    } else if (buttonId == "exitButton") {
+        PennyEngine::stop();
+    } else if (pe::stringStartsWith(buttonId, "back_")) {
+        pe::UI::getMenu(pe::splitString(buttonId, "_")[1])->close();
+    }
 }
 
 void TestGameManager::update() {
@@ -78,10 +126,6 @@ void TestGameManager::drawUI(sf::RenderTexture& surface) {
     circle.setPosition(100, 50);
 
     pe::UI::draw(circle);*/
-}
-
-void TestGameManager::buttonPressed(std::string buttonId) {
-    pe::Logger::log(buttonId);
 }
 
 void TestGameManager::keyPressed(sf::Keyboard::Key& key) {

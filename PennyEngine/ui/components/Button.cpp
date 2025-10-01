@@ -6,7 +6,7 @@ pe::Button::Button(std::string buttonId, float x, float y, float width, float he
 MenuComponent(buttonId, x, y, width, height, font, centerOnCoords) {
     _listener = listner;
 
-    float fontSize = UI::percentToScreenWidth(2.f);
+    float fontSize = UI::percentToScreenWidth(1.5f);
     _text.setFont(_font);
     _text.setCharacterSize(fontSize);
     _text.setFillColor(sf::Color::White);
@@ -32,6 +32,11 @@ void pe::Button::update() {
     } else {
         setAppearance(BASE_COMPONENT_CONFIG);
     }
+
+    if (!PennyEngine::playerIsUsingMouse() && !_mouseDown && !_isSelected) setAppearance(BASE_COMPONENT_CONFIG);
+
+    if (pressWhenSelected && _isSelected && !_wasJustSelected) _listener->buttonPressed(getIdentifier());
+    _wasJustSelected = _isSelected;
 }
 
 void pe::Button::draw(sf::RenderTexture& surface) {

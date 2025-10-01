@@ -50,6 +50,7 @@ void pe::Menu::clearComponents() {
 }
 
 void pe::Menu::addChild(s_p<Menu> menu) {
+    menu->setParent(this);
     _children.push_back(menu);
 }
 
@@ -63,12 +64,12 @@ std::vector<s_p<pe::Menu>> pe::Menu::getChildren() const {
     return _children;
 }
 
-void pe::Menu::setParent(s_p<pe::Menu> menu) {
+void pe::Menu::setParent(Menu* menu) {
     _hasParent = true;
     _parent = menu;
 }
 
-s_p<pe::Menu> pe::Menu::getParent() const {
+pe::Menu* pe::Menu::getParent() const {
     return _parent;
 }
 

@@ -31,8 +31,7 @@ namespace pe {
         s_p<Menu> getChild(std::string id) const;
         std::vector<s_p<Menu>> getChildren() const;
 
-        void setParent(s_p<Menu> menu);
-        s_p<Menu> getParent() const;
+        Menu* getParent() const;
         bool hasParent() const;
 
         void open(bool closeParents = true);
@@ -45,6 +44,9 @@ namespace pe {
         std::string getIdentifier() const;
 
         friend class pe::intern::UIManager;
+    protected:
+        void setParent(Menu* menu);
+
     private:
         const std::string _id;
 
@@ -53,7 +55,7 @@ namespace pe {
         bool _useGamepadConfig = false;
 
         bool _hasParent = false;
-        s_p<Menu> _parent = nullptr;
+        Menu* _parent = nullptr;
 
         std::vector<s_p<MenuComponent>> _components;
 

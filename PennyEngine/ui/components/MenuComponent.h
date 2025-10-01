@@ -26,7 +26,6 @@ namespace pe {
         bool blockGamepadInput = false;
 
         virtual void setCharacterSize(float size);
-        virtual void setTextVerticalOffset(float offset);
 
         std::string getIdentifier() const;
 
@@ -58,7 +57,6 @@ namespace pe {
         sf::RectangleShape _shape;
 
         sf::Text _text;
-        float _textYOffset = 0.f;
         sf::Font _font;
 
         void alignText();

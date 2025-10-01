@@ -29,9 +29,9 @@ pe::MenuComponent::MenuComponent(const std::string id, float x, float y, float w
 }
 
 void pe::MenuComponent::render(sf::RenderTexture& surface, const sf::RenderStates& states) {
-    alignText();
-
     drawShapes(surface, states);
+
+    alignText();
     surface.draw(_text);
 
     draw(surface);
@@ -121,11 +121,14 @@ void pe::MenuComponent::drawShapes(sf::RenderTexture& surface, const sf::RenderS
 
 void pe::MenuComponent::alignText() {
     if (!_disableAutomaticTextAlignment) {
-        const float width = _leftEdge.getSize().x + _center.getSize().x + _rightEdge.getSize().x;
-        const float height = _centerTop.getSize().y + _center.getSize().y + _centerBottom.getSize().y;
+        _text.setOrigin(_text.getLocalBounds().width / 2.f + _text.getLocalBounds().left, _text.getLocalBounds().height / 2.f + _text.getLocalBounds().top);
+       
+        const sf::FloatRect bounds = getBounds();
+        const float width = bounds.width;
+        const float height = bounds.height;
         _text.setPosition(
-            _pos.x + (width / 2) - _text.getGlobalBounds().width / 2,
-            _pos.y - _centerTop.getSize().y + _text.getGlobalBounds().height / 2 + _textYOffset
+            bounds.left + (width / 2.f),
+            bounds.top + (height / 2.f)
         );
     }
 }
@@ -152,10 +155,6 @@ int pe::MenuComponent::getGamepadSelectionId() const {
 
 void pe::MenuComponent::setCharacterSize(float size) {
     _text.setCharacterSize(UI::percentToScreenWidth(size));
-}
-
-void pe::MenuComponent::setTextVerticalOffset(float offset) {
-    _textYOffset = UI::percentToScreenHeight(offset);
 }
 
 std::string pe::MenuComponent::getIdentifier() const {
