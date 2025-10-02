@@ -2,12 +2,12 @@
 #include "../UI.h"
 #include "../../core/Logger.h"
 
-pe::MenuComponent::MenuComponent(const std::string id, float x, float y, float width, float height, sf::Font font, bool autoCenter, ComponentAppearanceConfig appearance) : 
+pe::MenuComponent::MenuComponent(const std::string id, float x, float y, float width, float height, bool autoCenter, ComponentAppearanceConfig appearance) : 
     _id(id), _appearance(appearance) {
     _pos = UI::percentToScreenPos(x, y);
     _size = UI::percentToScreenDimensions(width, height);
 
-    _font = font;
+    _text.setFont(PennyEngine::getFont());
 
     _appearance = appearance;
 

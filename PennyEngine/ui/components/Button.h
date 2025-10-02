@@ -7,13 +7,14 @@
 namespace pe {
     class Button : public pe::MenuComponent {
     public:
-        Button(std::string buttonId, float x, float y, float width, float height, std::string labelText, sf::Font font, ButtonListener* listner, bool centerOnCoords = true);
+        Button(std::string buttonId, float x, float y, float width, float height, std::string labelText, ButtonListener* listner, bool centerOnCoords = true);
 
         void setLabelText(std::string labelText);
 
         bool pressWhenSelected = false;
 
         virtual void show();
+        virtual void hide();
 
     protected:
         bool _mouseDown = false;

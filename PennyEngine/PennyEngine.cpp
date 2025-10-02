@@ -92,6 +92,18 @@ std::string PennyEngine::getAppName() {
     return _appName;
 }
 
+void PennyEngine::setFont(std::string path) {
+    _instance.fontPath = path;
+}
+
+std::string PennyEngine::getFontPath() {
+    return _instance.fontPath;
+}
+
+sf::Font& PennyEngine::getFont() {
+    return _instance.getFont();
+}
+
 bool PennyEngine::playerIsUsingMouse() {
     return _usingMouse;
 }

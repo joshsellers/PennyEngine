@@ -11,6 +11,7 @@ int main() {
 
     PennyEngine::setAppName("TestApp");
     PennyEngine::setWindowTitle(PennyEngine::getAppName());
+    PennyEngine::setFont("res/font.ttf");
 
     PennyEngine::setFullscreen(true);
     PennyEngine::useDisplayResForUI(true);
@@ -19,7 +20,6 @@ int main() {
     //PennyEngine::setDisplayResolution({ 1080, 1080 });
 
     PennyEngine::setFramerateLimit(60);
-
 
     TestGameManager testManager;
 

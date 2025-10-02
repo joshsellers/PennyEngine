@@ -33,6 +33,8 @@ namespace pe {
 
         static s_p<sf::Texture> getSpriteSheet();
 
+        static sf::Vector2i getMousePos();
+
         friend class pe::intern::EngineInstance;
     private:
         static inline intern::UIManager _instance;

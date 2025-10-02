@@ -41,6 +41,9 @@ namespace pe {
             bool isStarted() const;
 
             InputEventDistributor& getInputManager();
+
+            std::string fontPath = "NONE";
+            sf::Font& getFont();
         private:
             void createWindow(GfxResources& gfxResources);
             void mainLoop(GfxResources& gfxResources);
@@ -53,6 +56,8 @@ namespace pe {
             bool _started = false;
 
             InputEventDistributor _inputManager;
+
+            sf::Font _font;
         };
     }
 }

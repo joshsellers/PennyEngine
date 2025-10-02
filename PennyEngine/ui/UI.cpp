@@ -29,6 +29,11 @@ float pe::UI::percentToScreenHeight(float height) {
     return (float)res.height * (height / 100.f);
 }
 
+sf::Vector2i pe::UI::getMousePos() {
+    const sf::Vector2i mPos(sf::Mouse::getPosition().x + PennyEngine::getUIMouseOffset().x, sf::Mouse::getPosition().y + PennyEngine::getUIMouseOffset().y);
+    return mPos;
+}
+
 void pe::UI::addMenu(s_p<Menu> menu) {
     _instance.getMenus().push_back(menu);
 }

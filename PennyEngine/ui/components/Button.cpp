@@ -2,12 +2,11 @@
 #include "../UI.h"
 #include "../../core/Logger.h"
 
-pe::Button::Button(std::string buttonId, float x, float y, float width, float height, std::string labelText, sf::Font font, ButtonListener* listner, bool centerOnCoords) :
-MenuComponent(buttonId, x, y, width, height, font, centerOnCoords) {
+pe::Button::Button(std::string buttonId, float x, float y, float width, float height, std::string labelText, ButtonListener* listner, bool centerOnCoords) :
+MenuComponent(buttonId, x, y, width, height, centerOnCoords) {
     _listener = listner;
 
     float fontSize = UI::percentToScreenWidth(1.5f);
-    _text.setFont(_font);
     _text.setCharacterSize(fontSize);
     _text.setFillColor(sf::Color::White);
     _text.setString(labelText);
@@ -20,6 +19,12 @@ void pe::Button::setLabelText(std::string labelText) {
 void pe::Button::show() {
     _isActive = true;
     _mouseDown = false;
+    _mousePos = UI::getMousePos();
+}
+
+void pe::Button::hide() {
+    _isActive = false;
+    setAppearance(BASE_COMPONENT_CONFIG);
 }
 
 void pe::Button::update() {

@@ -35,6 +35,14 @@ void pe::intern::EngineInstance::start(GameManager* gameManager) {
         window.setMouseCursor(cursor);
     }
 
+    if (fontPath != "NONE") {
+        if (!_font.loadFromFile(fontPath)) {
+            Logger::log("Could not load font from " + fontPath);
+        }
+    }
+
+    gameManager->init();
+
     mainLoop(resources);
 
     shutdown();
@@ -239,4 +247,8 @@ bool pe::intern::EngineInstance::isStarted() const {
 
 pe::intern::InputEventDistributor& pe::intern::EngineInstance::getInputManager() {
     return _inputManager;
+}
+
+sf::Font& pe::intern::EngineInstance::getFont() {
+    return _font;
 }

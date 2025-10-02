@@ -12,6 +12,8 @@ class TestGameManager : public pe::GameManager, public pe::KeyListener, public p
 public:
     TestGameManager();
 
+    virtual void init();
+
     virtual void update();
     virtual void draw(sf::RenderTexture& surface);
     virtual void drawUI(sf::RenderTexture& surface);
@@ -28,8 +30,6 @@ protected:
 
     virtual void onShutdown();
 private:
-    sf::Font _font;
-
     std::string _test = "MANAGERTEST";
     TestClass _testObject;
 

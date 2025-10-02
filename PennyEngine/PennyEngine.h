@@ -47,6 +47,10 @@ public:
     static void setAppName(std::string name);
     static std::string getAppName();
 
+    static void setFont(std::string path);
+    static std::string getFontPath();
+    static sf::Font& getFont();
+
     static bool playerIsUsingMouse();
 
     static sf::Vector2f getUIMouseOffset();

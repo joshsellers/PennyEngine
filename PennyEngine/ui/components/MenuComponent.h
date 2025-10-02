@@ -14,10 +14,10 @@
 namespace pe {
     class MenuComponent {
     public:
-        MenuComponent(const std::string id, float x, float y, float width, float height, sf::Font font, bool autoCenter = true, ComponentAppearanceConfig appearance = BASE_COMPONENT_CONFIG);
+        MenuComponent(const std::string id, float x, float y, float width, float height, bool autoCenter = true, ComponentAppearanceConfig appearance = BASE_COMPONENT_CONFIG);
 
         virtual void show();
-        void hide();
+        virtual void hide();
         bool isActive() const;
 
         void setGamepadSelectionId(int selectionId);
@@ -57,7 +57,6 @@ namespace pe {
         sf::RectangleShape _shape;
 
         sf::Text _text;
-        sf::Font _font;
 
         void alignText();
         bool _disableAutomaticTextAlignment = false;
