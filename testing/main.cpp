@@ -16,8 +16,9 @@ int main() {
     PennyEngine::setFullscreen(true);
     PennyEngine::useDisplayResForUI(true);
     PennyEngine::setRenderResolution({400, 400});
-    PennyEngine::setDisplayResolution({ (int)sf::VideoMode::getDesktopMode().width, (int)sf::VideoMode::getDesktopMode().height });
+    //PennyEngine::setDisplayResolution({ (int)sf::VideoMode::getDesktopMode().width, (int)sf::VideoMode::getDesktopMode().height });
     //PennyEngine::setDisplayResolution({ 1080, 1080 });
+    PennyEngine::setDisplayResolution({ (int)(sf::VideoMode::getDesktopMode().width * 0.6f), (int)(sf::VideoMode::getDesktopMode().height * 0.6f) });
 
     PennyEngine::setFramerateLimit(60);
 

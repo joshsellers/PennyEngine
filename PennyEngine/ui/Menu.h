@@ -23,7 +23,7 @@ namespace pe {
         void draw(sf::RenderTexture& surface);
 
         void addComponent(s_p<MenuComponent> component);
-        s_p<MenuComponent> getComponent(std::string id) const;
+        s_p<MenuComponent> getComponent(std::string id, bool suppressWarning = false) const;
         std::vector<s_p<MenuComponent>> getComponents() const;
         void clearComponents();
 

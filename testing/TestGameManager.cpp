@@ -4,6 +4,7 @@
 #include "../PennyEngine/audio/SoundManager.h"
 #include "../PennyEngine/ui/UI.h"
 #include "../PennyEngine/ui/components/Button.h"
+#include "../PennyEngine/ui/components/Panel.h"
 #include "../PennyEngine/core/Defines.h"
 
 TestGameManager::TestGameManager() : _testObject("MEMBERVARTEST", 1) {
@@ -28,24 +29,30 @@ void TestGameManager::init() {
         {40, 55, 5, 1},
         {40, 57, 5, 6}
     };*/
+    
+    // PL buttons config
+    /*{ 112, 256, 4, 6 },
+    { 112, 276, 4, 10 },
+    { 112, 267, 4, 5 },
+    { 96, 256, 1, 6 },
+    { 96, 276, 1, 10 },
+    { 96, 267, 1, 5 },
+    { 128, 256, 4, 6 },
+    { 128, 276, 4, 10 },
+    { 128, 267, 4, 5 }*/
 
-    pe::BASE_COMPONENT_CONFIG = { 0.2f,
-        {32, 80, 2, 2},
-        {32, 83, 2, 1},
-        {32, 85, 2, 2},
-        {35, 80, 1, 2},
-        {35, 83, 1, 1},
-        {35, 85, 1, 2},
-        {37, 80, 2, 2},
-        {37, 83, 2, 1},
-        {37, 85, 2, 2}
-    };
+    //pe::BASE_COMPONENT_CONFIG.pixelSize = 1.f / (float)PennyEngine::getDisplayResolution().width * 100.f;
+    //pe::PANEL_CONFIG.pixelSize = pe::BASE_COMPONENT_CONFIG.pixelSize;
 
     pe::BUTTON_HOVER_CONFIG = pe::BASE_COMPONENT_CONFIG.offsetBy(16, 0);
     pe::BUTTON_CLICKED_CONFIG = pe::BUTTON_HOVER_CONFIG.offsetBy(16, 0);
 
     constexpr float buttonWidth = 7.f, buttonHeight = 3.f;
     const auto& startMenu = new_s_p(pe::Menu, ("startMenu"));
+
+    const auto& startPanel = new_s_p(pe::Panel, ("startPanel", 50, 55, 10, 20, "", true));
+    startMenu->addComponent(startPanel);
+
     startMenu->addComponent(new_s_p(pe::Button, ("startButton", 50, 50, buttonWidth, buttonHeight, "start", this)));
     startMenu->getComponent("startButton")->setGamepadSelectionId(0);
     startMenu->addComponent(new_s_p(pe::Button, ("settingsButton", 50, 55, buttonWidth, buttonHeight, "settings", this)));
@@ -60,8 +67,12 @@ void TestGameManager::init() {
 
     startMenu->open();
     pe::UI::addMenu(startMenu);
+    startPanel->attach("startButton");
+    startPanel->attach("settingsButton");
+    startPanel->attach("exitButton");
 
     const auto& subStartMenu = new_s_p(pe::Menu, ("subStartMenu"));
+    subStartMenu->addComponent(startPanel);
     subStartMenu->addComponent(new_s_p(pe::Button, ("test0", 50, 50, buttonWidth, buttonHeight, "test0", this)));
     subStartMenu->getComponent("test0")->setGamepadSelectionId(0);
     subStartMenu->addComponent(new_s_p(pe::Button, ("test1", 50, 55, buttonWidth, buttonHeight, "test1", this)));
@@ -76,8 +87,12 @@ void TestGameManager::init() {
 
     startMenu->addChild(subStartMenu);
     pe::UI::addMenu(subStartMenu);
+    startPanel->attach("test0");
+    startPanel->attach("test1");
+    startPanel->attach("back_subStartMenu");
 
     pe::UI::addMenu(new_s_p(pe::Menu, ("settingsMenu")));
+    pe::UI::getMenu("settingsMenu")->addComponent(startPanel);
     pe::UI::getMenu("settingsMenu")->addComponent(new_s_p(pe::Button, ("fullscreen", 50, 50, buttonWidth, buttonHeight, "fullscreen", this)));
     pe::UI::getMenu("settingsMenu")->getComponent("fullscreen")->setGamepadSelectionId(0);
     pe::UI::getMenu("settingsMenu")->addComponent(new_s_p(pe::Button, ("back_settingsMenu", 50, 55, buttonWidth, buttonHeight, "back", this)));
@@ -87,6 +102,8 @@ void TestGameManager::init() {
         {1}
     });
 
+    startPanel->attach("fullscreen");
+    startPanel->attach("back_settingsMenu");
     pe::UI::getMenu("startMenu")->addChild(pe::UI::getMenu("settingsMenu"));
 }
 

@@ -36,12 +36,14 @@ void pe::Menu::addComponent(s_p<MenuComponent> component) {
     _components.push_back(component);
 }
 
-s_p<pe::MenuComponent> pe::Menu::getComponent(std::string id) const {
+s_p<pe::MenuComponent> pe::Menu::getComponent(std::string id, bool suppressWarning) const {
     for (const auto& component : _components) {
         if (component->getIdentifier() == id) return component;
     }
 
-    Logger::log("Did not find menu component with id \"" + id + "\"");
+    if (!suppressWarning) {
+        Logger::log("Did not find menu component with id \"" + id + "\"");
+    }
     return nullptr;
 }
 

@@ -47,6 +47,10 @@ s_p<pe::Menu> pe::UI::getMenu(std::string id) {
     return nullptr;
 }
 
+std::vector<s_p<pe::Menu>> pe::UI::getMenus() {
+    return _instance.getMenus();
+}
+
 s_p<sf::Texture> pe::UI::getSpriteSheet() {
     return _instance.getSpriteSheet();
 }

@@ -30,6 +30,7 @@ namespace pe {
 
         static void addMenu(s_p<Menu> menu);
         static s_p<Menu> getMenu(std::string id); 
+        static std::vector<s_p<Menu>> getMenus();
 
         static s_p<sf::Texture> getSpriteSheet();
 

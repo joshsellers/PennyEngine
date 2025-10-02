@@ -28,7 +28,7 @@ namespace pe {
             Resolution renderRes;
             Resolution displayRes;
             bool autoScaleRenderRes = true;
-            bool useDisplayResForUI = false;
+            bool useDisplayResForUI = true;
 
             std::string appIconPath = "NONE";
             std::string cursorImagePath = "NONE";

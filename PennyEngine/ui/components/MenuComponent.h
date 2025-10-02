@@ -26,10 +26,14 @@ namespace pe {
         bool blockGamepadInput = false;
 
         virtual void setCharacterSize(float size);
+        virtual void setFontColor(sf::Color color);
 
         std::string getIdentifier() const;
 
         virtual void setAppearance(ComponentAppearanceConfig appearance);
+
+        void move(float x, float y);
+        virtual void move(sf::Vector2f delta);
 
         friend class Menu;
     protected:
@@ -45,7 +49,7 @@ namespace pe {
         virtual void keyReleased(sf::Keyboard::Key& key);
         virtual void mouseButtonPressed(const int mx, const int my, const int button);
         virtual void mouseButtonReleased(const int mx, const int my, const int button);
-        virtual void mouseMoved(const int mx, const int my) = 0;
+        virtual void mouseMoved(const int mx, const int my);
         virtual void mouseWheelScrolled(sf::Event::MouseWheelScrollEvent mouseWheelScroll);
         virtual void textEntered(const sf::Uint32 character);
 

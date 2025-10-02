@@ -1,6 +1,7 @@
 #include "MenuComponent.h"
 #include "../UI.h"
 #include "../../core/Logger.h"
+#include "Panel.h"
 
 pe::MenuComponent::MenuComponent(const std::string id, float x, float y, float width, float height, bool autoCenter, ComponentAppearanceConfig appearance) : 
     _id(id), _appearance(appearance) {
@@ -157,12 +158,28 @@ void pe::MenuComponent::setCharacterSize(float size) {
     _text.setCharacterSize(UI::percentToScreenWidth(size));
 }
 
+void pe::MenuComponent::setFontColor(sf::Color color) {
+    _text.setFillColor(color);
+}
+
 std::string pe::MenuComponent::getIdentifier() const {
     return _id;
 }
 
 void pe::MenuComponent::setAppearance(ComponentAppearanceConfig appearance) {
     _appearance = appearance;
+}
+
+void pe::MenuComponent::move(float x, float y) {
+    move({ x, y });
+}
+
+void pe::MenuComponent::move(sf::Vector2f delta) {
+    _pos += delta;
+
+    if (_disableAutomaticTextAlignment) {
+        _text.move(delta);
+    }
 }
 
 void pe::MenuComponent::controllerButtonReleased(GAMEPAD_BUTTON button) {
@@ -175,6 +192,9 @@ void pe::MenuComponent::keyPressed(sf::Keyboard::Key& key) {
 }
 
 void pe::MenuComponent::keyReleased(sf::Keyboard::Key& key) {
+}
+
+void pe::MenuComponent::mouseMoved(const int mx, const int my) {
 }
 
 void pe::MenuComponent::mouseButtonPressed(const int mx, const int my, const int button) {
