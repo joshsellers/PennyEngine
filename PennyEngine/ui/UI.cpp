@@ -1,5 +1,6 @@
 #include "UI.h"
 #include "../core/Resolution.h"
+#include "../core/Logger.h"
 
 sf::Vector2f pe::UI::percentToScreenPos(sf::Vector2f pos) {
     const Resolution res = PennyEngine::useDisplayResForUI() ? PennyEngine::getDisplayResolution() : PennyEngine::getRenderResolution();
@@ -36,6 +37,9 @@ s_p<pe::Menu> pe::UI::getMenu(std::string id) {
     for (const auto& menu : _instance.getMenus()) {
         if (menu->getIdentifier() == id) return menu;
     }
+
+    Logger::log("Did not find menu with id \"" + id + "\"");
+    return nullptr;
 }
 
 s_p<sf::Texture> pe::UI::getSpriteSheet() {

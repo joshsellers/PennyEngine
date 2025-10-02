@@ -1,6 +1,7 @@
 #include "Menu.h"
 #include <SFML/Graphics/RenderTexture.hpp>
 #include "../PennyEngine.h"
+#include "../core/Logger.h"
 
 pe::Menu::Menu(const std::string id) : _id(id) {}
 
@@ -39,6 +40,9 @@ s_p<pe::MenuComponent> pe::Menu::getComponent(std::string id) const {
     for (const auto& component : _components) {
         if (component->getIdentifier() == id) return component;
     }
+
+    Logger::log("Did not find menu component with id \"" + id + "\"");
+    return nullptr;
 }
 
 std::vector<s_p<pe::MenuComponent>> pe::Menu::getComponents() const {
@@ -58,6 +62,9 @@ s_p<pe::Menu> pe::Menu::getChild(std::string id) const {
     for (const auto& child : _children) {
         if (child->getIdentifier() == id) return child;
     }
+
+    Logger::log("Did not find child menu with id \"" + id + "\"");
+    return nullptr;
 }
 
 std::vector<s_p<pe::Menu>> pe::Menu::getChildren() const {
