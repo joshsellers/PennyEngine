@@ -1,3 +1,6 @@
+// Copyright (c) 2025 Josh Sellers
+// Licensed under the MIT License. See LICENSE
+
 //#define NO_CONSOLE_ON_STARTUP
 
 #include "../PennyEngine/PennyEngine.h"

@@ -1,3 +1,6 @@
+// Copyright (c) 2025 Josh Sellers
+// Licensed under the MIT License. See LICENSE
+
 #include "InputEventDistributor.h"
 #include "Gamepad/Gamepad.h"
 #include "../PennyEngine.h"

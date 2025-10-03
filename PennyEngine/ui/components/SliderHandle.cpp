@@ -1,3 +1,6 @@
+// Copyright (c) 2025 Josh Sellers
+// Licensed under the MIT License. See LICENSE
+
 #include "SliderHandle.h"
 
 pe::SliderHandle::SliderHandle(std::string id, float x, float y, float width, float height) :

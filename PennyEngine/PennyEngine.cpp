@@ -1,3 +1,6 @@
+// Copyright (c) 2025 Josh Sellers
+// Licensed under the MIT License. See LICENSE
+
 #include "PennyEngine.h"
 
 void PennyEngine::start(pe::GameManager* gameManager) {

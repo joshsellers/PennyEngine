@@ -1,3 +1,6 @@
+// Copyright (c) 2025 Josh Sellers
+// Licensed under the MIT License. See LICENSE
+
 #ifndef _LOGGER_H
 #define _LOGGER_H
 

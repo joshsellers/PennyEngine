@@ -1,3 +1,6 @@
+// Copyright (c) 2025 Josh Sellers
+// Licensed under the MIT License. See LICENSE
+
 #ifndef _SOUND_MANAGER_H
 #define _SOUND_MANAGER_H
 

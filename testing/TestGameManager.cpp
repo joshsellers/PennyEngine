@@ -1,3 +1,6 @@
+// Copyright (c) 2025 Josh Sellers
+// Licensed under the MIT License. See LICENSE
+
 #include "TestGameManager.h"
 #include "../PennyEngine/PennyEngine.h"
 #include <iostream>

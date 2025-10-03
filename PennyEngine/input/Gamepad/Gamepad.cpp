@@ -1,3 +1,6 @@
+// Copyright (c) 2025 Josh Sellers
+// Licensed under the MIT License. See LICENSE
+
 #include "Gamepad.h"
 #include <SFML/Window/Joystick.hpp>
 #include <windows.h>

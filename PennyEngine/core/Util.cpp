@@ -1,3 +1,6 @@
+// Copyright (c) 2025 Josh Sellers
+// Licensed under the MIT License. See LICENSE
+
 #define _USE_MATH_DEFINES
 
 #include "Util.h"

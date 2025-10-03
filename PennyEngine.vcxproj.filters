@@ -383,5 +383,6 @@
       <Filter>Source Files</Filter>
     </None>
     <None Include="cpp.hint" />
+    <None Include="PennyEngine.licenseheader" />
   </ItemGroup>
 </Project>
