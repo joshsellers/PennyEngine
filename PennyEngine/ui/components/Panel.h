@@ -7,7 +7,7 @@
 namespace pe {
     /*
         If a Panel is to be added to a Menu, it should
-        be the first MenuComponent added. Otherwise, 
+        be the last MenuComponent added. Otherwise, 
         any other components in the Menu will not be 
         visible.
 

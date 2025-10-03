@@ -27,6 +27,10 @@ namespace pe {
         std::vector<s_p<MenuComponent>> getComponents() const;
         void clearComponents();
 
+        void moveForward(MenuComponent* component);
+        void moveBack(MenuComponent* component);
+        void moveToFront(MenuComponent* component);
+
         void addChild(s_p<Menu> menu);
         s_p<Menu> getChild(std::string id) const;
         std::vector<s_p<Menu>> getChildren() const;
@@ -58,6 +62,7 @@ namespace pe {
         Menu* _parent = nullptr;
 
         std::vector<s_p<MenuComponent>> _components;
+        unsigned int _componentZTracker = 0;
 
         std::vector<s_p<Menu>> _children;
 
@@ -66,6 +71,8 @@ namespace pe {
         std::vector<std::vector<int>> _selectionGrid;
 
         bool _pendingActivation = false;
+
+        void sortComponents();
 
         void controllerButtonReleased(GAMEPAD_BUTTON button);
         void controllerButtonPressed(GAMEPAD_BUTTON button);

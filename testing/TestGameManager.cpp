@@ -31,15 +31,17 @@ void TestGameManager::init() {
     };*/
     
     // PL buttons config
-    /*{ 112, 256, 4, 6 },
-    { 112, 276, 4, 10 },
-    { 112, 267, 4, 5 },
-    { 96, 256, 1, 6 },
-    { 96, 276, 1, 10 },
-    { 96, 267, 1, 5 },
-    { 128, 256, 4, 6 },
-    { 128, 276, 4, 10 },
-    { 128, 267, 4, 5 }*/
+    /*pe::BASE_COMPONENT_CONFIG = { 0.2f,
+        { 112, 256, 4, 6 },
+        { 112, 276, 4, 10 },
+        { 112, 267, 4, 5 },
+        { 96, 256, 1, 6 },
+        { 96, 276, 1, 10 },
+        { 96, 267, 1, 5 },
+        { 128, 256, 4, 6 },
+        { 128, 276, 4, 10 },
+        { 128, 267, 4, 5 }
+    };*/
 
     //pe::BASE_COMPONENT_CONFIG.pixelSize = 1.f / (float)PennyEngine::getDisplayResolution().width * 100.f;
     //pe::PANEL_CONFIG.pixelSize = pe::BASE_COMPONENT_CONFIG.pixelSize;
@@ -49,10 +51,6 @@ void TestGameManager::init() {
 
     constexpr float buttonWidth = 7.f, buttonHeight = 3.f;
     const auto& startMenu = new_s_p(pe::Menu, ("startMenu"));
-
-    const auto& startPanel = new_s_p(pe::Panel, ("startPanel", 50, 55, 10, 20, "menu", true));
-    startPanel->setTextPosition(50, 10);
-    startMenu->addComponent(startPanel);
 
     startMenu->addComponent(new_s_p(pe::Button, ("startButton", 50, 50, buttonWidth, buttonHeight, "start", this)));
     startMenu->getComponent("startButton")->setGamepadSelectionId(0);
@@ -68,12 +66,20 @@ void TestGameManager::init() {
 
     startMenu->open();
     pe::UI::addMenu(startMenu);
+    const auto& startPanel = new_s_p(pe::Panel, ("startPanel", 50, 55, 10, 20, "menu", true));
+    startPanel->setTextPosition(50, 10);
+    startMenu->addComponent(startPanel);
+
+    startMenu->addComponent(new_s_p(pe::Panel, ("testPanel", 0, 0, 5, 6, "test", true)));
+    startMenu->addComponent(new_s_p(pe::Panel, ("testPanel0", 10, 10, 5, 6, "test0", true)));
+    startMenu->addComponent(new_s_p(pe::Panel, ("testPanel1", 20, 20, 5, 6, "test1", true)));
+    startMenu->addComponent(new_s_p(pe::Panel, ("testPanel2", 30, 30, 5, 6, "test2", true)));
     startPanel->attach("startButton");
     startPanel->attach("settingsButton");
     startPanel->attach("exitButton");
 
+
     const auto& subStartMenu = new_s_p(pe::Menu, ("subStartMenu"));
-    subStartMenu->addComponent(startPanel);
     subStartMenu->addComponent(new_s_p(pe::Button, ("test0", 50, 50, buttonWidth, buttonHeight, "test0", this)));
     subStartMenu->getComponent("test0")->setGamepadSelectionId(0);
     subStartMenu->addComponent(new_s_p(pe::Button, ("test1", 50, 55, buttonWidth, buttonHeight, "test1", this)));
@@ -88,12 +94,12 @@ void TestGameManager::init() {
 
     startMenu->addChild(subStartMenu);
     pe::UI::addMenu(subStartMenu);
+    subStartMenu->addComponent(startPanel);
     startPanel->attach("test0");
     startPanel->attach("test1");
     startPanel->attach("back_subStartMenu");
 
     pe::UI::addMenu(new_s_p(pe::Menu, ("settingsMenu")));
-    pe::UI::getMenu("settingsMenu")->addComponent(startPanel);
     pe::UI::getMenu("settingsMenu")->addComponent(new_s_p(pe::Button, ("fullscreen", 50, 50, buttonWidth, buttonHeight, "fullscreen", this)));
     pe::UI::getMenu("settingsMenu")->getComponent("fullscreen")->setGamepadSelectionId(0);
     pe::UI::getMenu("settingsMenu")->addComponent(new_s_p(pe::Button, ("back_settingsMenu", 50, 55, buttonWidth, buttonHeight, "back", this)));
@@ -103,6 +109,7 @@ void TestGameManager::init() {
         {1}
     });
 
+    pe::UI::getMenu("settingsMenu")->addComponent(startPanel);
     startPanel->attach("fullscreen");
     startPanel->attach("back_settingsMenu");
     pe::UI::getMenu("startMenu")->addChild(pe::UI::getMenu("settingsMenu"));
@@ -131,11 +138,11 @@ void TestGameManager::update() {
 
 void TestGameManager::draw(sf::RenderTexture& surface) {
     sf::RectangleShape shape;
-    shape.setFillColor(sf::Color::White);
+    shape.setFillColor(sf::Color(0x665867FF));
     shape.setSize({ (float)PennyEngine::getRenderResolution().width, (float)PennyEngine::getRenderResolution().height});
     shape.setPosition(0, 0);
 
-    surface.draw(shape);
+   surface.draw(shape);
 
     /*sf::CircleShape circle;
     circle.setFillColor(sf::Color::Red);

@@ -37,6 +37,10 @@ namespace pe {
         void move(float x, float y);
         virtual void move(sf::Vector2f delta);
 
+        virtual void moveForward();
+        virtual void moveBack();
+        virtual void moveToFront();
+
         friend class Menu;
     protected:
         virtual void update() = 0;
@@ -56,6 +60,8 @@ namespace pe {
         virtual void textEntered(const sf::Uint32 character);
 
         virtual sf::FloatRect getBounds() const;
+
+        std::vector<Menu*> _parentMenus;
 
         sf::Vector2f _pos;
         sf::Vector2f _size;
@@ -87,6 +93,8 @@ namespace pe {
         sf::RectangleShape _rightBottomCorner;
     private:
         const std::string _id;
+        
+        std::map<std::string, unsigned int> _zPositions;
     };
 }
 

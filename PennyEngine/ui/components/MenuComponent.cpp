@@ -190,6 +190,24 @@ void pe::MenuComponent::move(sf::Vector2f delta) {
     _pos += delta;
 }
 
+void pe::MenuComponent::moveForward() {
+    for (const auto& menu : _parentMenus) {
+        menu->moveForward(this);
+    }
+}
+
+void pe::MenuComponent::moveBack() {
+    for (const auto& menu : _parentMenus) {
+        menu->moveBack(this);
+    }
+}
+
+void pe::MenuComponent::moveToFront() {
+    for (const auto& menu : _parentMenus) {
+        menu->moveToFront(this);
+    }
+}
+
 void pe::MenuComponent::controllerButtonReleased(GAMEPAD_BUTTON button) {
 }
 

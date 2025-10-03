@@ -6,6 +6,8 @@
 pe::Menu::Menu(const std::string id) : _id(id) {}
 
 void pe::Menu::update() {
+    sortComponents();
+
     for (auto& component : _components) {
         if (component->isActive()) component->update();
     }
@@ -34,6 +36,9 @@ void pe::Menu::draw(sf::RenderTexture& surface) {
 
 void pe::Menu::addComponent(s_p<MenuComponent> component) {
     _components.push_back(component);
+    component->_parentMenus.push_back(this);
+    component->_zPositions[getIdentifier()] = _componentZTracker;
+    _componentZTracker++;
 }
 
 s_p<pe::MenuComponent> pe::Menu::getComponent(std::string id, bool suppressWarning) const {
@@ -53,6 +58,69 @@ std::vector<s_p<pe::MenuComponent>> pe::Menu::getComponents() const {
 
 void pe::Menu::clearComponents() {
     _components.clear();
+}
+
+void pe::Menu::moveForward(MenuComponent* component) {
+    if (component->_zPositions.at(getIdentifier()) == 0) return;
+    component->_zPositions.at(getIdentifier())--;
+
+    sortComponents();
+    for (int i = getComponents().size() - 1; i >= 0; i--) {
+        const auto& otherComponent = _components.at(i);
+        if (otherComponent->getIdentifier() != component->getIdentifier()) {
+            if (otherComponent->_zPositions.at(getIdentifier()) == component->_zPositions.at(getIdentifier())) {
+                otherComponent->_zPositions.at(getIdentifier())++;
+                return;
+            }
+        }
+    }
+}
+
+void pe::Menu::moveBack(MenuComponent* component) {
+    component->_zPositions.at(getIdentifier())++;
+
+    sortComponents();
+    for (int i = 0; i < getComponents().size(); i++) {
+        const auto& otherComponent = _components.at(i);
+        if (otherComponent->getIdentifier() != component->getIdentifier()) {
+            if (otherComponent->_zPositions.at(getIdentifier()) == component->_zPositions.at(getIdentifier())) {
+                otherComponent->_zPositions.at(getIdentifier())--;
+                return;
+            }
+        }
+    }
+}
+
+void pe::Menu::moveToFront(MenuComponent* component) {
+    if (component->_zPositions.at(getIdentifier()) == 0) return;
+    sortComponents();
+
+    for (int i = 0; i < getComponents().size(); i++) {
+        const auto& otherComponent = _components.at(i);
+        if (otherComponent->getIdentifier() != component->getIdentifier()) {
+            if (otherComponent->_zPositions.at(getIdentifier()) > component->_zPositions.at(getIdentifier())) {
+                otherComponent->_zPositions.at(getIdentifier())--;
+            }
+        } else break;
+    }
+
+    component->_zPositions.at(getIdentifier()) = 0;
+    if (_components.at(_components.size() - 1)->_zPositions.at(getIdentifier()) == 0) {
+        for (int i = getComponents().size() - 1; i >= 0; i--) {
+            const auto& otherComponent = _components.at(i);
+            if (otherComponent->getIdentifier() != component->getIdentifier()) {
+                otherComponent->_zPositions.at(getIdentifier())++;
+            }
+        }
+    }
+}
+
+void pe::Menu::sortComponents() {
+    std::sort(_components.begin(), _components.end(),
+        [this](s_p<MenuComponent> component0, s_p<MenuComponent> component1) {
+            return component0->_zPositions.at(getIdentifier()) > component1->_zPositions.at(getIdentifier());
+        }
+    );
 }
 
 void pe::Menu::addChild(s_p<Menu> menu) {
