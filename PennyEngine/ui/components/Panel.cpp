@@ -24,10 +24,6 @@ void pe::Panel::attach(s_p<MenuComponent> component) {
 void pe::Panel::move(sf::Vector2f delta) {
     _pos += delta;
 
-    if (_disableAutomaticTextAlignment) {
-        _text.move(delta);
-    }
-
     for (const auto& component : _attachedComponents) {
         component->move(delta);
     }

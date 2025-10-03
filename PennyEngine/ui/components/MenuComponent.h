@@ -27,6 +27,8 @@ namespace pe {
 
         virtual void setCharacterSize(float size);
         virtual void setFontColor(sf::Color color);
+        virtual void setTextPosition(sf::Vector2f pos);
+        void setTextPosition(float x, float y);
 
         std::string getIdentifier() const;
 
@@ -61,6 +63,7 @@ namespace pe {
         sf::RectangleShape _shape;
 
         sf::Text _text;
+        sf::Vector2f _textPos;
 
         void alignText();
         bool _disableAutomaticTextAlignment = false;

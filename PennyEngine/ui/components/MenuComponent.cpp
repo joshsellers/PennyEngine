@@ -131,6 +131,9 @@ void pe::MenuComponent::alignText() {
             bounds.left + (width / 2.f),
             bounds.top + (height / 2.f)
         );
+    } else {
+        _text.setOrigin(_text.getLocalBounds().width / 2.f + _text.getLocalBounds().left, _text.getLocalBounds().height / 2.f + _text.getLocalBounds().top);
+        _text.setPosition(getBounds().left + (_textPos.x / 100.f) * getBounds().width, getBounds().top + (_textPos.y / 100.f) * getBounds().height);
     }
 }
 
@@ -162,6 +165,15 @@ void pe::MenuComponent::setFontColor(sf::Color color) {
     _text.setFillColor(color);
 }
 
+void pe::MenuComponent::setTextPosition(sf::Vector2f pos) {
+    _textPos = pos;
+    _disableAutomaticTextAlignment = true;
+}
+
+void pe::MenuComponent::setTextPosition(float x, float y) {
+    setTextPosition({ x, y });
+}
+
 std::string pe::MenuComponent::getIdentifier() const {
     return _id;
 }
@@ -176,10 +188,6 @@ void pe::MenuComponent::move(float x, float y) {
 
 void pe::MenuComponent::move(sf::Vector2f delta) {
     _pos += delta;
-
-    if (_disableAutomaticTextAlignment) {
-        _text.move(delta);
-    }
 }
 
 void pe::MenuComponent::controllerButtonReleased(GAMEPAD_BUTTON button) {

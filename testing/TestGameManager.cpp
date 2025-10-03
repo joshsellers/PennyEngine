@@ -50,7 +50,8 @@ void TestGameManager::init() {
     constexpr float buttonWidth = 7.f, buttonHeight = 3.f;
     const auto& startMenu = new_s_p(pe::Menu, ("startMenu"));
 
-    const auto& startPanel = new_s_p(pe::Panel, ("startPanel", 50, 55, 10, 20, "", true));
+    const auto& startPanel = new_s_p(pe::Panel, ("startPanel", 50, 55, 10, 20, "menu", true));
+    startPanel->setTextPosition(50, 10);
     startMenu->addComponent(startPanel);
 
     startMenu->addComponent(new_s_p(pe::Button, ("startButton", 50, 50, buttonWidth, buttonHeight, "start", this)));
