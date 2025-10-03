@@ -6,14 +6,17 @@
 #include "../../input/gamepad/Gamepad.h"
 #include "../../core/Logger.h"
 
-pe::Slider::Slider(std::string id, float x, float y, sf::Vector2f railSize, sf::Vector2f handleSize, std::string label, ButtonListener* listener, bool autoCenter) 
+pe::Slider::Slider(std::string id, float x, float y, sf::Vector2f railSize, sf::Vector2f handleSize, std::string label, SliderListener* listener, bool autoCenter, float gamepadStepRate) 
 : MenuComponent(id, x, y, railSize.x, railSize.y, autoCenter, SLIDER_CONFIG) {
+    _gamepadStepRate = gamepadStepRate;
+
     float fontSize = UI::percentToScreenWidth(1.5f);
     _text.setCharacterSize(fontSize);
     _text.setFillColor(sf::Color::White);
     _text.setString(label);
 
-    _handle = new_s_p(pe::SliderHandle, (id + "_handle", x, y, handleSize.x, handleSize.y));
+    _handle = new_s_p(pe::SliderHandle, (id + "_handle", x, y, handleSize.x, handleSize.y, autoCenter));
+    if (!autoCenter) _handle->move(0, -_size.y / 2.f);
 
     _handle->constructShapes();
     constructShapes();
@@ -21,6 +24,8 @@ pe::Slider::Slider(std::string id, float x, float y, sf::Vector2f railSize, sf::
     _lastValue = _value;
 
     _listener = listener;
+
+    setTextPosition(50, 200); // default should probably be above
 }
 
 void pe::Slider::setValue(float value) {
@@ -45,10 +50,10 @@ void pe::Slider::setLabelText(std::string labelText) {
 void pe::Slider::update() {
     if (_isSelected && Gamepad::isConnected()) {
         if (Gamepad::isButtonPressed(GAMEPAD_BUTTON::DPAD_LEFT)) {
-            setValue(_value - 0.01);
+            setValue(_value - _gamepadStepRate);
             if (_value < 0) setValue(0);
         } else if (Gamepad::isButtonPressed(GAMEPAD_BUTTON::DPAD_RIGHT)) {
-            setValue(_value + 0.01);
+            setValue(_value + _gamepadStepRate);
             if (_value > 1) setValue(1);
         }
     }
@@ -74,7 +79,7 @@ void pe::Slider::update() {
     }
 
     if (_value != _lastValue) {
-        _listener->buttonPressed(getIdentifier());
+        _listener->sliderMoved(getIdentifier(), _value);
         _lastValue = _value;
     }
 }

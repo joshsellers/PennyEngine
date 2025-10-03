@@ -9,9 +9,10 @@
 #include "../PennyEngine/input/KeyListener.h"
 #include "../PennyEngine/input/MouseListener.h"
 #include "../PennyEngine/ui/components/ButtonListener.h"
+#include "../PennyEngine/ui/components/SliderListener.h"
 #include "TestClass.h"
 
-class TestGameManager : public pe::GameManager, public pe::KeyListener, public pe::MouseListener, public pe::ButtonListener {
+class TestGameManager : public pe::GameManager, public pe::KeyListener, public pe::MouseListener, public pe::ButtonListener, public pe::SliderListener {
 public:
     TestGameManager();
 
@@ -22,6 +23,7 @@ public:
     virtual void drawUI(sf::RenderTexture& surface);
 protected:
     virtual void buttonPressed(std::string buttonId);
+    virtual void sliderMoved(std::string sliderId, float value);
 
     virtual void keyPressed(sf::Keyboard::Key& key);
     virtual void keyReleased(sf::Keyboard::Key& key);

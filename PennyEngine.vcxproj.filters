@@ -377,6 +377,9 @@
     <ClInclude Include="PennyEngine\ui\components\Slider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PennyEngine\ui\components\SliderListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="soloud\audiosource\speech\Elements.def">

@@ -63,7 +63,7 @@ void TestGameManager::init() {
     startMenu->addComponent(new_s_p(pe::Button, ("exitButton", 50, 60, buttonWidth, buttonHeight, "exit", this)));
     startMenu->getComponent("exitButton")->setGamepadSelectionId(2);
 
-    startMenu->addComponent(new_s_p(pe::Slider, ("testSlider", 50, 65, { buttonWidth, 0.5f }, { 1.f, 1.f }, "", this)));
+    startMenu->addComponent(new_s_p(pe::Slider, ("testSlider", 50, 65, { buttonWidth, 0.5f }, { 1.f, 1.f }, "test", this)));
     startMenu->getComponent("testSlider")->setGamepadSelectionId(3);
     startMenu->defineGamepadSelectionGrid({
         {0},
@@ -135,6 +135,10 @@ void TestGameManager::buttonPressed(std::string buttonId) {
     } else if (pe::stringStartsWith(buttonId, "back_")) {
         pe::UI::getMenu(pe::splitString(buttonId, "_")[1])->close();
     }
+}
+
+void TestGameManager::sliderMoved(std::string sliderId, float value) {
+    pe::Logger::log(sliderId + ": " + std::to_string(value));
 }
 
 void TestGameManager::update() {

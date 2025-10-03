@@ -81,3 +81,7 @@ void pe::Button::controllerButtonReleased(GAMEPAD_BUTTON button) {
 void pe::Button::controllerButtonPressed(GAMEPAD_BUTTON button) {
     if (_isSelected && button == GAMEPAD_BUTTON::A && !pressWhenSelected) _mouseDown = true;
 }
+
+bool pe::Button::hasMousePriority() const {
+    return getBounds().contains(_mousePos.x, _mousePos.y);
+}

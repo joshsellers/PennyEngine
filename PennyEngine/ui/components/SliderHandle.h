@@ -9,7 +9,7 @@
 namespace pe {
     class SliderHandle : public MenuComponent {
     public:
-        SliderHandle(std::string id, float x, float y, float width, float height);
+        SliderHandle(std::string id, float x, float y, float width, float height, bool autoCenter = true);
 
         friend class Slider;
     protected:

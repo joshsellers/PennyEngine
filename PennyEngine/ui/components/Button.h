@@ -19,6 +19,8 @@ namespace pe {
         virtual void show();
         virtual void hide();
 
+        virtual bool hasMousePriority() const;
+
     protected:
         bool _mouseDown = false;
 

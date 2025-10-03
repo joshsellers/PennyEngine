@@ -3,8 +3,8 @@
 
 #include "SliderHandle.h"
 
-pe::SliderHandle::SliderHandle(std::string id, float x, float y, float width, float height) :
-MenuComponent(id, x, y, width, height, true) {
+pe::SliderHandle::SliderHandle(std::string id, float x, float y, float width, float height, bool autoCenter) :
+MenuComponent(id, x, y, width, height, autoCenter) {
 }
 
 void pe::SliderHandle::update() {
