@@ -258,6 +258,12 @@
     <ClCompile Include="PennyEngine\ui\components\Panel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PennyEngine\ui\components\SliderHandle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PennyEngine\ui\components\Slider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PennyEngine\PennyEngine.h">
@@ -363,6 +369,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PennyEngine\ui\components\Panel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PennyEngine\ui\components\SliderHandle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PennyEngine\ui\components\Slider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

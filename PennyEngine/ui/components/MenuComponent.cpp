@@ -30,6 +30,7 @@ pe::MenuComponent::MenuComponent(const std::string id, float x, float y, float w
 }
 
 void pe::MenuComponent::render(sf::RenderTexture& surface, const sf::RenderStates& states) {
+    constructShapes();
     drawShapes(surface, states);
 
     alignText();
@@ -38,7 +39,7 @@ void pe::MenuComponent::render(sf::RenderTexture& surface, const sf::RenderState
     draw(surface);
 }
 
-void pe::MenuComponent::drawShapes(sf::RenderTexture& surface, const sf::RenderStates& states) {
+void pe::MenuComponent::constructShapes() {
     const float padding = 0;//UI::percentToScreenWidth(1.5f);
 
     const float x = _pos.x - padding;
@@ -108,7 +109,9 @@ void pe::MenuComponent::drawShapes(sf::RenderTexture& surface, const sf::RenderS
     if (timesLeft > 5 || timesRight > 5) {
         Logger::log("Cap correction took longer than five attempts\ntimesLeft was: " + std::to_string(timesLeft) + "\ntimesRight was: " + std::to_string(timesRight));
     }
+}
 
+void pe::MenuComponent::drawShapes(sf::RenderTexture& surface, const sf::RenderStates& states) {
     surface.draw(_leftEdge);
     surface.draw(_leftTopCorner);
     surface.draw(_leftBottomCorner);
@@ -206,6 +209,10 @@ void pe::MenuComponent::moveToFront() {
     for (const auto& menu : _parentMenus) {
         menu->moveToFront(this);
     }
+}
+
+bool pe::MenuComponent::hasMousePriority() const {
+    return _hasMousePriority;
 }
 
 void pe::MenuComponent::controllerButtonReleased(GAMEPAD_BUTTON button) {

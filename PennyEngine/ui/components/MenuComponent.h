@@ -41,10 +41,15 @@ namespace pe {
         virtual void moveBack();
         virtual void moveToFront();
 
+        virtual bool hasMousePriority() const;
+
+        virtual sf::FloatRect getBounds() const;
+
         friend class Menu;
     protected:
         virtual void update() = 0;
         virtual void render(sf::RenderTexture& surface, const sf::RenderStates& states = sf::RenderStates::Default);
+        virtual void constructShapes();
         virtual void drawShapes(sf::RenderTexture& surface, const sf::RenderStates& states = sf::RenderStates::Default);
         virtual void draw(sf::RenderTexture& surface) = 0;
 
@@ -58,8 +63,6 @@ namespace pe {
         virtual void mouseMoved(const int mx, const int my);
         virtual void mouseWheelScrolled(sf::Event::MouseWheelScrollEvent mouseWheelScroll);
         virtual void textEntered(const sf::Uint32 character);
-
-        virtual sf::FloatRect getBounds() const;
 
         std::vector<Menu*> _parentMenus;
 
@@ -79,6 +82,8 @@ namespace pe {
         bool _isSelected = false;
         int _selectionId = 0;
         bool _disableMouseMovementDeselection = false;
+
+        bool _hasMousePriority = false;
 
         ComponentAppearanceConfig _appearance;
 

@@ -57,6 +57,10 @@ void pe::Panel::mouseMoved(const int mx, const int my) {
 
 void pe::Panel::mouseButtonPressed(const int mx, const int my, const int button) {
     if (_isDraggable && getBounds().contains(mx, my)) {
+        for (const auto& component : _attachedComponents) {
+            if (component->hasMousePriority()) return;
+        }
+
         _mouseDown = true;
         moveToFront();
         for (const auto& component : _attachedComponents) {

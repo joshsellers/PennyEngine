@@ -7,6 +7,7 @@ namespace pe {
     class ButtonListener {
     public:
         friend class Button;
+        friend class Slider;
     protected:
         virtual void buttonPressed(std::string buttonId) = 0;
     };

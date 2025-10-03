@@ -137,6 +137,8 @@
     <ClCompile Include="PennyEngine\ui\components\Button.cpp" />
     <ClCompile Include="PennyEngine\ui\components\MenuComponent.cpp" />
     <ClCompile Include="PennyEngine\ui\components\Panel.cpp" />
+    <ClCompile Include="PennyEngine\ui\components\Slider.cpp" />
+    <ClCompile Include="PennyEngine\ui\components\SliderHandle.cpp" />
     <ClCompile Include="PennyEngine\ui\Menu.cpp" />
     <ClCompile Include="PennyEngine\ui\UI.cpp" />
     <ClCompile Include="PennyEngine\ui\UIManager.cpp" />
@@ -235,6 +237,8 @@
     <ClInclude Include="PennyEngine\ui\components\ComponentAppearanceConfig.h" />
     <ClInclude Include="PennyEngine\ui\components\MenuComponent.h" />
     <ClInclude Include="PennyEngine\ui\components\Panel.h" />
+    <ClInclude Include="PennyEngine\ui\components\Slider.h" />
+    <ClInclude Include="PennyEngine\ui\components\SliderHandle.h" />
     <ClInclude Include="PennyEngine\ui\Menu.h" />
     <ClInclude Include="PennyEngine\ui\UI.h" />
     <ClInclude Include="PennyEngine\ui\UIManager.h" />

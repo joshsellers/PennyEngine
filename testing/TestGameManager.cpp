@@ -5,6 +5,7 @@
 #include "../PennyEngine/ui/UI.h"
 #include "../PennyEngine/ui/components/Button.h"
 #include "../PennyEngine/ui/components/Panel.h"
+#include "../PennyEngine/ui/components/Slider.h"
 #include "../PennyEngine/core/Defines.h"
 
 TestGameManager::TestGameManager() : _testObject("MEMBERVARTEST", 1) {
@@ -58,15 +59,19 @@ void TestGameManager::init() {
     startMenu->getComponent("settingsButton")->setGamepadSelectionId(1);
     startMenu->addComponent(new_s_p(pe::Button, ("exitButton", 50, 60, buttonWidth, buttonHeight, "exit", this)));
     startMenu->getComponent("exitButton")->setGamepadSelectionId(2);
+
+    startMenu->addComponent(new_s_p(pe::Slider, ("testSlider", 50, 65, { buttonWidth, 0.5f }, { 1.f, 1.f }, "", this)));
+    startMenu->getComponent("testSlider")->setGamepadSelectionId(3);
     startMenu->defineGamepadSelectionGrid({
         {0},
         {1},
-        {2}
+        {2},
+        {3}
     });
 
     startMenu->open();
     pe::UI::addMenu(startMenu);
-    const auto& startPanel = new_s_p(pe::Panel, ("startPanel", 50, 55, 10, 20, "menu", true));
+    const auto& startPanel = new_s_p(pe::Panel, ("startPanel", 50, 55, 10, 30, "menu", true));
     startPanel->setTextPosition(50, 10);
     startMenu->addComponent(startPanel);
 
@@ -77,6 +82,7 @@ void TestGameManager::init() {
     startPanel->attach("startButton");
     startPanel->attach("settingsButton");
     startPanel->attach("exitButton");
+    startPanel->attach("testSlider");
 
 
     const auto& subStartMenu = new_s_p(pe::Menu, ("subStartMenu"));

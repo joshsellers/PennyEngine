@@ -55,6 +55,8 @@ namespace pe {
         {54, 100, 3, 1},
         {54, 102, 3, 3}
     };
+
+    inline ComponentAppearanceConfig SLIDER_CONFIG = BASE_COMPONENT_CONFIG;
 }
 
 #endif
