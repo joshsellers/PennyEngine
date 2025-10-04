@@ -1,5 +1,5 @@
 // Copyright (c) 2025 Josh Sellers
-// Licensed under the MIT License. See LICENSE
+// Licensed under the MIT License. See LICENSE file.
 
 // For this to work, need to set subsystem to "not set" in properties -> linker -> system -> subsystem
 #ifdef NO_CONSOLE_ON_STARTUP

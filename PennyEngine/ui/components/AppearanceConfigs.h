@@ -1,5 +1,5 @@
 // Copyright (c) 2025 Josh Sellers
-// Licensed under the MIT License. See LICENSE
+// Licensed under the MIT License. See LICENSE file.
 
 #ifndef _APPEARANCE_CONFIIGS_H
 #define _APPEARANCE_CONFIIGS_H
@@ -20,31 +20,11 @@ namespace pe {
         {37, 85, 2, 2}
     };
 
-    inline ComponentAppearanceConfig BUTTON_HOVER_CONFIG = {
-        6.f,
-        {112, 321, 3, 2},
-        {112, 339, 3, 9},
-        {112, 332, 3, 3},
-        {96, 321, 1, 2},
-        {96, 339, 1, 9},
-        {96, 332, 1, 3},
-        {128, 321, 2, 2},
-        {128, 339, 3, 9},
-        {128, 332, 3, 3}
-    };
+    inline ComponentAppearanceConfig BUTTON_CONFIG = BASE_COMPONENT_CONFIG;
 
-    inline ComponentAppearanceConfig BUTTON_CLICKED_CONFIG = {
-        6.f,
-        {112, 321, 3, 2},
-        {112, 339, 3, 9},
-        {112, 332, 3, 3},
-        {96, 321, 1, 2},
-        {96, 339, 1, 9},
-        {96, 332, 1, 3},
-        {128, 321, 2, 2},
-        {128, 339, 3, 9},
-        {128, 332, 3, 3}
-    };
+    inline ComponentAppearanceConfig BUTTON_HOVER_CONFIG = BUTTON_CONFIG.offsetBy(16, 0);
+
+    inline ComponentAppearanceConfig BUTTON_CLICKED_CONFIG = BUTTON_CONFIG.offsetBy(32, 0);
 
     inline ComponentAppearanceConfig PANEL_CONFIG = {
         0.2f,
@@ -59,7 +39,8 @@ namespace pe {
         {54, 102, 3, 3}
     };
 
-    inline ComponentAppearanceConfig SLIDER_CONFIG = BASE_COMPONENT_CONFIG;
+    inline ComponentAppearanceConfig SLIDER_HANDLE_CONFIG = BASE_COMPONENT_CONFIG;
+    inline ComponentAppearanceConfig SLIDER_RAIL_CONFIG = BASE_COMPONENT_CONFIG;
 }
 
 #endif

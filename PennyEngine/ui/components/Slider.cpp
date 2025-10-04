@@ -1,5 +1,5 @@
 // Copyright (c) 2025 Josh Sellers
-// Licensed under the MIT License. See LICENSE
+// Licensed under the MIT License. See LICENSE file.
 
 #include "Slider.h"
 #include "../UI.h"
@@ -7,7 +7,7 @@
 #include "../../core/Logger.h"
 
 pe::Slider::Slider(std::string id, float x, float y, sf::Vector2f railSize, sf::Vector2f handleSize, std::string label, SliderListener* listener, bool autoCenter, float gamepadStepRate) 
-: MenuComponent(id, x, y, railSize.x, railSize.y, autoCenter, SLIDER_CONFIG) {
+: MenuComponent(id, x, y, railSize.x, railSize.y, autoCenter, SLIDER_RAIL_CONFIG) {
     _gamepadStepRate = gamepadStepRate;
 
     float fontSize = UI::percentToScreenWidth(1.5f);

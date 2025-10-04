@@ -293,9 +293,6 @@
     <ClInclude Include="PennyEngine\input\InputEventDistributor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="testing\TestClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PennyEngine\input\gamepad\Gamepad.h">
       <Filter>Header Files</Filter>
     </ClInclude>

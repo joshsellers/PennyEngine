@@ -1,5 +1,5 @@
 // Copyright (c) 2025 Josh Sellers
-// Licensed under the MIT License. See LICENSE
+// Licensed under the MIT License. See LICENSE file.
 
 //#define NO_CONSOLE_ON_STARTUP
 
@@ -10,8 +10,6 @@
 // for testing
 
 int main() {
-    TestClass testObject("MAINTEST", 2); 
-
     PennyEngine::setAppName("TestApp");
     PennyEngine::setWindowTitle(PennyEngine::getAppName());
     PennyEngine::setFont("res/font.ttf");

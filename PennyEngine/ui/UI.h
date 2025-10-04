@@ -1,5 +1,5 @@
 // Copyright (c) 2025 Josh Sellers
-// Licensed under the MIT License. See LICENSE
+// Licensed under the MIT License. See LICENSE file.
 
 #ifndef _UI_H
 #define _UI_H
@@ -31,7 +31,7 @@ namespace pe {
             _instance.getSurface()->draw(graphic);
         }
 
-        static void addMenu(s_p<Menu> menu);
+        static s_p<Menu> addMenu(std::string id);
         static s_p<Menu> getMenu(std::string id); 
         static std::vector<s_p<Menu>> getMenus();
 

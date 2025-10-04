@@ -1,5 +1,5 @@
 // Copyright (c) 2025 Josh Sellers
-// Licensed under the MIT License. See LICENSE
+// Licensed under the MIT License. See LICENSE file.
 
 #ifndef _TEST_GAME_MANAGER_H
 #define _TEST_GAME_MANAGER_H
@@ -10,7 +10,6 @@
 #include "../PennyEngine/input/MouseListener.h"
 #include "../PennyEngine/ui/components/ButtonListener.h"
 #include "../PennyEngine/ui/components/SliderListener.h"
-#include "TestClass.h"
 
 class TestGameManager : public pe::GameManager, public pe::KeyListener, public pe::MouseListener, public pe::ButtonListener, public pe::SliderListener {
 public:
@@ -35,10 +34,6 @@ protected:
 
     virtual void onShutdown();
 private:
-    std::string _test = "MANAGERTEST";
-    TestClass _testObject;
-
-    std::vector<std::shared_ptr<TestClass>> _testObjects;
 };
 
 #endif

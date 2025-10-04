@@ -1,5 +1,5 @@
 // Copyright (c) 2025 Josh Sellers
-// Licensed under the MIT License. See LICENSE
+// Licensed under the MIT License. See LICENSE file.
 
 #include "UI.h"
 #include "../core/Resolution.h"
@@ -37,8 +37,9 @@ sf::Vector2i pe::UI::getMousePos() {
     return mPos;
 }
 
-void pe::UI::addMenu(s_p<Menu> menu) {
-    _instance.getMenus().push_back(menu);
+s_p<pe::Menu> pe::UI::addMenu(std::string id) {
+    _instance.getMenus().push_back(new_s_p(Menu, (id)));
+    return getMenu(id);
 }
 
 s_p<pe::Menu> pe::UI::getMenu(std::string id) {

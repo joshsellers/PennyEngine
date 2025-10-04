@@ -1,12 +1,12 @@
 // Copyright (c) 2025 Josh Sellers
-// Licensed under the MIT License. See LICENSE
+// Licensed under the MIT License. See LICENSE file.
 
 #include "Button.h"
 #include "../UI.h"
 #include "../../core/Logger.h"
 
 pe::Button::Button(std::string buttonId, float x, float y, float width, float height, std::string labelText, ButtonListener* listner, bool centerOnCoords) :
-MenuComponent(buttonId, x, y, width, height, centerOnCoords) {
+MenuComponent(buttonId, x, y, width, height, centerOnCoords, BUTTON_CONFIG) {
     _listener = listner;
 
     float fontSize = UI::percentToScreenWidth(1.5f);
@@ -38,10 +38,10 @@ void pe::Button::update() {
     } else if (bounds.contains(_mousePos.x, _mousePos.y) || (_mouseDown && _isSelected)) {
         setAppearance(BUTTON_CLICKED_CONFIG);
     } else {
-        setAppearance(BASE_COMPONENT_CONFIG);
+        setAppearance(BUTTON_CONFIG);
     }
 
-    if (!PennyEngine::playerIsUsingMouse() && !_mouseDown && !_isSelected) setAppearance(BASE_COMPONENT_CONFIG);
+    if (!PennyEngine::playerIsUsingMouse() && !_mouseDown && !_isSelected) setAppearance(BUTTON_CONFIG);
 
     if (pressWhenSelected && _isSelected && !_wasJustSelected) _listener->buttonPressed(getIdentifier());
     _wasJustSelected = _isSelected;
