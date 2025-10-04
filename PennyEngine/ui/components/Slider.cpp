@@ -30,7 +30,7 @@ pe::Slider::Slider(std::string id, float x, float y, sf::Vector2f railSize, sf::
 
 void pe::Slider::setValue(float value) {
     _value = value;
-    const float newHandleX = _pos.x + getBounds().width * value - _handle->getBounds().width / 2.f;
+    const float newHandleX = _pos.x + (getBounds().width - _handle->getBounds().width) * value;
     _handle->move(newHandleX - _handle->getBounds().left, 0);
 }
 
@@ -71,11 +71,11 @@ void pe::Slider::update() {
     if (_mouseSelected) {
         const float handleX = _handle->getBounds().left;
         float newHandleX = _mousePos.x - _handle->getBounds().width / 2.f;
-        if (newHandleX + _handle->getBounds().width / 2.f < _pos.x) newHandleX = _pos.x - _handle->getBounds().width / 2.f;
-        else if (newHandleX + _handle->getBounds().width / 2.f > _pos.x + getBounds().width) newHandleX = _pos.x + getBounds().width - _handle->getBounds().width / 2.f;
+        if (newHandleX < _pos.x) newHandleX = _pos.x;
+        else if (newHandleX + _handle->getBounds().width > _pos.x + getBounds().width) newHandleX = _pos.x + getBounds().width - _handle->getBounds().width;
         _handle->move(newHandleX - handleX, 0);
 
-        _value = std::min((_handle->getBounds().left + _handle->getBounds().width / 2.f - _pos.x) / getBounds().width, 1.f);
+        _value = std::min((_handle->getBounds().left + _handle->getBounds().width / 2.f - (_pos.x + _handle->getBounds().width / 2.f)) / (getBounds().width - _handle->getBounds().width), 1.f);
     }
 
     if (_value != _lastValue) {
