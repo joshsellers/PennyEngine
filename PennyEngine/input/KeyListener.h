@@ -16,6 +16,7 @@ namespace pe {
     protected:
         virtual void keyPressed(sf::Keyboard::Key& key) = 0;
         virtual void keyReleased(sf::Keyboard::Key& key) = 0;
+        virtual void textEntered(sf::Uint32 character) {};
     };
 }
 

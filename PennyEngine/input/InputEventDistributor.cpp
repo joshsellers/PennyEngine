@@ -7,6 +7,11 @@
 
 void pe::intern::InputEventDistributor::handleEvent(sf::Event& event) {
     switch (event.type) {
+        case sf::Event::TextEntered: 
+        {
+            for (const auto& listener : _keyListeners) listener->textEntered(event.text.unicode);
+            break;
+        }
         case sf::Event::KeyPressed:
         {
             for (const auto& listener : _keyListeners) listener->keyPressed(event.key.code);

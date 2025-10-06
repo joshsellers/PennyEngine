@@ -29,6 +29,7 @@ namespace pe {
         protected:
             virtual void keyPressed(sf::Keyboard::Key& key);
             virtual void keyReleased(sf::Keyboard::Key& key);
+            virtual void textEntered(sf::Uint32 character);
 
             virtual void mouseButtonPressed(const int mx, const int my, const int button);
             virtual void mouseButtonReleased(const int mx, const int my, const int button);

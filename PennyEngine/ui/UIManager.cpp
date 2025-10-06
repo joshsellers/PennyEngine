@@ -43,6 +43,12 @@ s_p<sf::Texture> pe::intern::UIManager::getSpriteSheet() const {
     return _spriteSheet;
 }
 
+void pe::intern::UIManager::textEntered(sf::Uint32 character) {
+    for (const auto& menu : getMenus()) {
+        if (menu->isActive()) menu->textEntered(character);
+    }
+}
+
 void pe::intern::UIManager::keyPressed(sf::Keyboard::Key& key) {
     for (const auto& menu : getMenus()) {
         if (menu->isActive()) menu->keyPressed(key);
