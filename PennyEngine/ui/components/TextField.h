@@ -49,6 +49,8 @@ namespace pe {
 
         void gamepadArm();
         void gamepadDisarm();
+
+        unsigned int _cursorBlinkTimer = 0;
     };
 }
 

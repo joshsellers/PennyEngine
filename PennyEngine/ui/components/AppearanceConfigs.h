@@ -42,9 +42,9 @@ namespace pe {
     inline ComponentAppearanceConfig SLIDER_HANDLE_CONFIG = BASE_COMPONENT_CONFIG;
     inline ComponentAppearanceConfig SLIDER_RAIL_CONFIG = BASE_COMPONENT_CONFIG;
 
-    inline ComponentAppearanceConfig TEXTFIELD_CONFIG = BUTTON_CONFIG;
-    inline ComponentAppearanceConfig TEXTFIELD_HOVER_CONFIG = BUTTON_HOVER_CONFIG;
-    inline ComponentAppearanceConfig TEXTFIELD_ARMED_CONFIG = BUTTON_CLICKED_CONFIG;
+    inline ComponentAppearanceConfig TEXTFIELD_CONFIG = BUTTON_CONFIG.offsetBy(0, 32);
+    inline ComponentAppearanceConfig TEXTFIELD_HOVER_CONFIG = TEXTFIELD_CONFIG.offsetBy(16, 0);
+    inline ComponentAppearanceConfig TEXTFIELD_ARMED_CONFIG = TEXTFIELD_CONFIG.offsetBy(32, 0);
 }
 
 #endif

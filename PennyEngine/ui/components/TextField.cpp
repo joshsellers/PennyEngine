@@ -3,6 +3,7 @@
 
 #include "TextField.h"
 #include "../UI.h"
+#include "../../core/Logger.h"
 
 pe::TextField::TextField(std::string id, float x, float y, float width, float height, std::string label, std::string defaultText,
     bool autoCenter) : MenuComponent(id, x, y, width, height, autoCenter, TEXTFIELD_CONFIG) {
@@ -61,6 +62,20 @@ void pe::TextField::draw(sf::RenderTexture& surface) {
     );
 
     surface.draw(_fieldText);
+
+    if (_isArmed) {
+        sf::Text cursor;
+        cursor.setString(" |");
+        cursor.setFont(PennyEngine::getFont());
+        cursor.setCharacterSize(_fieldText.getCharacterSize() + UI::percentToScreenWidth(0.5f));
+        cursor.setFillColor(_fieldText.getFillColor());
+        cursor.setOrigin(cursor.getLocalBounds().width / 2.f + cursor.getLocalBounds().left, cursor.getLocalBounds().height / 2.f + cursor.getLocalBounds().top);
+        cursor.setPosition(_fieldText.getPosition().x + _fieldText.getGlobalBounds().width / 2.f, _fieldText.getPosition().y);
+        constexpr unsigned int blinkRate = 24;
+        if ((_cursorBlinkTimer / blinkRate) % 2) surface.draw(cursor);
+
+        _cursorBlinkTimer++;
+    }
 }
 
 void pe::TextField::move(sf::Vector2f delta) {
