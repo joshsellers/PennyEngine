@@ -37,6 +37,10 @@ sf::Vector2i pe::UI::getMousePos() {
     return mPos;
 }
 
+void pe::UI::toggleVirtualKeyboard() {
+    _instance.toggleVirtualKeyboard();
+}
+
 s_p<pe::Menu> pe::UI::addMenu(std::string id) {
     _instance.getMenus().push_back(new_s_p(Menu, (id)));
     return getMenu(id);

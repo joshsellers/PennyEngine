@@ -32,6 +32,7 @@ namespace pe {
         virtual void setFontColor(sf::Color color);
         virtual void setTextPosition(sf::Vector2f pos);
         void setTextPosition(float x, float y);
+        virtual sf::Text& getText();
 
         std::string getIdentifier() const;
 
@@ -66,6 +67,8 @@ namespace pe {
         virtual void mouseMoved(const int mx, const int my);
         virtual void mouseWheelScrolled(sf::Event::MouseWheelScrollEvent mouseWheelScroll);
         virtual void textEntered(const sf::Uint32 character);
+
+        virtual void virtualKeyboardClosed() {};
 
         std::vector<Menu*> _parentMenus;
 

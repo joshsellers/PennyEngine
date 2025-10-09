@@ -50,6 +50,9 @@ namespace pe {
 
         std::string getIdentifier() const;
 
+        void enableGamepadInput();
+        void disableGamepadInput();
+
         friend class pe::intern::UIManager;
     protected:
         void setParent(Menu* menu);
@@ -88,6 +91,8 @@ namespace pe {
         void mouseWheelScrolled(sf::Event::MouseWheelScrollEvent mouseWheelScroll);
 
         void textEntered(sf::Uint32 character);
+
+        void virtualKeyboardClosed();
     };
 }
 

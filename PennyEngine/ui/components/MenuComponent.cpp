@@ -180,6 +180,10 @@ void pe::MenuComponent::setTextPosition(float x, float y) {
     setTextPosition({ x, y });
 }
 
+sf::Text& pe::MenuComponent::getText() {
+    return _text;
+}
+
 std::string pe::MenuComponent::getIdentifier() const {
     return _id;
 }

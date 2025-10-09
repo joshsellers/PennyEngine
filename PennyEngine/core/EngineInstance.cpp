@@ -46,6 +46,8 @@ void pe::intern::EngineInstance::start(GameManager* gameManager) {
 
     gameManager->init();
 
+    UI::_instance.createVirtualKeyboard();
+
     mainLoop(resources);
 
     shutdown();

@@ -286,3 +286,17 @@ void pe::Menu::textEntered(sf::Uint32 character) {
         if (component->isActive()) component->textEntered(character);
     }
 }
+
+void pe::Menu::enableGamepadInput() {
+    _useGamepadConfig = true;
+}
+
+void pe::Menu::disableGamepadInput() {
+    _useGamepadConfig = false;
+}
+
+void pe::Menu::virtualKeyboardClosed() {
+    for (const auto& component : _components) {
+        component->virtualKeyboardClosed();
+    }
+}

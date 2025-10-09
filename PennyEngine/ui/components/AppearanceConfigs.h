@@ -41,6 +41,10 @@ namespace pe {
 
     inline ComponentAppearanceConfig SLIDER_HANDLE_CONFIG = BASE_COMPONENT_CONFIG;
     inline ComponentAppearanceConfig SLIDER_RAIL_CONFIG = BASE_COMPONENT_CONFIG;
+
+    inline ComponentAppearanceConfig TEXTFIELD_CONFIG = BUTTON_CONFIG;
+    inline ComponentAppearanceConfig TEXTFIELD_HOVER_CONFIG = BUTTON_HOVER_CONFIG;
+    inline ComponentAppearanceConfig TEXTFIELD_ARMED_CONFIG = BUTTON_CLICKED_CONFIG;
 }
 
 #endif

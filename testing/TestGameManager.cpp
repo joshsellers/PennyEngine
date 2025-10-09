@@ -9,6 +9,7 @@
 #include "../PennyEngine/ui/components/Button.h"
 #include "../PennyEngine/ui/components/Panel.h"
 #include "../PennyEngine/ui/components/Slider.h"
+#include "../PennyEngine/ui/components/TextField.h"
 #include "../PennyEngine/core/Defines.h"
 
 TestGameManager::TestGameManager() {
@@ -22,8 +23,8 @@ void TestGameManager::init() {
     panel->setTextPosition(50, 10);
 
     const auto& menu = pe::UI::addMenu("menu");
-    menu->addComponent(new_s_p(pe::Button, ("start", 50, 47, 7, 3, "start", this)));
-    menu->getComponent("start")->setGamepadSelectionId(0);
+    menu->addComponent(new_s_p(pe::Button, ("open_startMenu", 50, 47, 7, 3, "start", this)));
+    menu->getComponent("open_startMenu")->setGamepadSelectionId(0);
     menu->addComponent(new_s_p(pe::Button, ("open_settings", 50, 52, 7, 3, "settings", this)));
     menu->getComponent("open_settings")->setGamepadSelectionId(1);
     menu->addComponent(new_s_p(pe::Button, ("exit", 50, 57, 7, 3, "exit", this)));
@@ -35,7 +36,7 @@ void TestGameManager::init() {
     });
 
     menu->addComponent(panel);
-    panel->attach("start");
+    panel->attach("open_startMenu");
     panel->attach("open_settings");
     panel->attach("exit");
     menu->open();
@@ -54,6 +55,21 @@ void TestGameManager::init() {
     settingsMenu->addComponent(panel);
     panel->attach("volume");
     panel->attach("back_settings");
+
+    const auto& startMenu = pe::UI::addMenu("startMenu");
+    menu->addChild(startMenu);
+    startMenu->addComponent(new_s_p(pe::TextField, ("testTextField", 50, 47, 7, 3, "textField", "test")));
+    startMenu->getComponent("testTextField")->setGamepadSelectionId(0);
+    startMenu->addComponent(new_s_p(pe::Button, ("back_startMenu", 50, 52, 7, 3, "back", this)));
+    startMenu->getComponent("back_startMenu")->setGamepadSelectionId(1);
+    startMenu->defineGamepadSelectionGrid({
+        {0},
+        {1}
+    });
+
+    startMenu->addComponent(panel);
+    panel->attach("testTextField");
+    panel->attach("back_startMenu");
 }
 
 void TestGameManager::buttonPressed(std::string buttonId) {
@@ -72,11 +88,11 @@ void TestGameManager::sliderMoved(std::string sliderId, float value) {
 }
 
 void TestGameManager::update() {
-    constexpr float speed = 1.f;
+    /*constexpr float speed = 1.f;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) PennyEngine::getCamera().move(0, -speed);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) PennyEngine::getCamera().move(0, speed);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) PennyEngine::getCamera().move(-speed, 0);
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) PennyEngine::getCamera().move(speed, 0);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) PennyEngine::getCamera().move(speed, 0);*/
 }
 
 void TestGameManager::draw(sf::RenderTexture& surface) {

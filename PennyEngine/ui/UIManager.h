@@ -9,11 +9,12 @@
 #include "../input/KeyListener.h"
 #include "../input/MouseListener.h"
 #include "Menu.h"
+#include "components/ButtonListener.h"
 #include "../core/Defines.h"
 
 namespace pe {
     namespace intern {
-        class UIManager : public KeyListener, public MouseListener, public GamepadListener {
+        class UIManager : public KeyListener, public MouseListener, public GamepadListener, public ButtonListener {
         public:
             UIManager();
 
@@ -26,6 +27,10 @@ namespace pe {
             std::vector<s_p<Menu>>& getMenus();
 
             s_p<sf::Texture> getSpriteSheet() const;
+
+            void createVirtualKeyboard();
+            void toggleVirtualKeyboard();
+
         protected:
             virtual void keyPressed(sf::Keyboard::Key& key);
             virtual void keyReleased(sf::Keyboard::Key& key);
@@ -41,6 +46,8 @@ namespace pe {
 
             virtual void gamepadDisconnected();
             virtual void gamepadConnected();
+
+            virtual void buttonPressed(std::string id);
         private:
             sf::RenderTexture* _surface = nullptr;
 

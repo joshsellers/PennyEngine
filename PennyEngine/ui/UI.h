@@ -39,6 +39,8 @@ namespace pe {
 
         static sf::Vector2i getMousePos();
 
+        static void toggleVirtualKeyboard();
+
         friend class pe::intern::EngineInstance;
     private:
         static inline intern::UIManager _instance;
