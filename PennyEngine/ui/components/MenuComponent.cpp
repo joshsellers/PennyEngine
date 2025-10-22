@@ -15,11 +15,6 @@ pe::MenuComponent::MenuComponent(const std::string id, float x, float y, float w
 
     _appearance = appearance;
 
-    if (autoCenter) {
-        _pos.x -= _size.x / 2.f;
-        _pos.y -= _size.y / 2.f;
-    }
-
     const auto& spriteSheet = UI::getSpriteSheet().get();
     _leftEdge.setTexture(spriteSheet);
     _leftTopCorner.setTexture(spriteSheet);
@@ -29,7 +24,13 @@ pe::MenuComponent::MenuComponent(const std::string id, float x, float y, float w
     _centerBottom.setTexture(spriteSheet);
     _rightEdge.setTexture(spriteSheet);
     _rightTopCorner.setTexture(spriteSheet);
-    _rightBottomCorner.setTexture(spriteSheet);
+    _rightBottomCorner.setTexture(spriteSheet); 
+    
+    if (autoCenter) {
+        constructShapes();
+        _pos.x -= getBounds().width / 2.f;
+        _pos.y -= getBounds().height / 2.f;
+    }
 }
 
 void pe::MenuComponent::render(sf::RenderTexture& surface, const sf::RenderStates& states) {
