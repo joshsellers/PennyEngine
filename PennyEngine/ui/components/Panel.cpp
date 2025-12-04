@@ -20,10 +20,6 @@ void pe::Panel::setTitle(std::string text) {
     _text.setString(text);
 }
 
-void pe::Panel::attach(s_p<MenuComponent> component) {
-    _attachedComponents.push_back(component);
-}
-
 void pe::Panel::move(sf::Vector2f delta) {
     _pos += delta;
 
@@ -32,11 +28,36 @@ void pe::Panel::move(sf::Vector2f delta) {
     }
 }
 
+void pe::Panel::attach(s_p<MenuComponent> component) {
+    _attachedComponents.push_back(component);
+}
+
 void pe::Panel::attach(std::string identifier) {
     for (const auto& menu : UI::getMenus()) {
         const auto& component = menu->getComponent(identifier, true);
         if (component != nullptr) {
             _attachedComponents.push_back(component);
+            return;
+        }
+    }
+
+    Logger::log("Panel could not find component with id \"" + identifier + "\"");
+}
+
+void pe::Panel::attachAt(s_p<MenuComponent> component, sf::Vector2f pos) {
+    attach(component);
+    const sf::Vector2f convPos = { _pos.x + _size.x * (pos.x / 100.f), _pos.y + _size.y * (pos.y / 100.f) };
+    const sf::Vector2f delta = convPos - sf::Vector2f(
+        component->getBounds().left + component->getBounds().width / 2.f, component->getBounds().top + component->getBounds().height / 2.f
+    );
+    component->move(delta);
+}
+
+void pe::Panel::attachAt(std::string identifier, sf::Vector2f pos) {
+    for (const auto& menu : UI::getMenus()) {
+        const auto& component = menu->getComponent(identifier, true);
+        if (component != nullptr) {
+            attachAt(component, pos);
             return;
         }
     }
