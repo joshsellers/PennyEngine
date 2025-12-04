@@ -267,6 +267,9 @@
     <ClCompile Include="PennyEngine\ui\components\TextField.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PennyEngine\ui\components\ToggleButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PennyEngine\PennyEngine.h">
@@ -381,6 +384,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PennyEngine\ui\components\TextField.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PennyEngine\ui\components\ToggleButtonListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PennyEngine\ui\components\ToggleButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
